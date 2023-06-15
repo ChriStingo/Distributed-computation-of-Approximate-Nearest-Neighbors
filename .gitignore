@@ -1,0 +1,11 @@
+Datasets/Compressed/*
+Datasets/Decompressed/*
+Datasets/Vectors/*
+Datasets/Indexes/*
+Datasets/.backup/*
+Algorithms/Faiss/*
+**/__pycache__/
+
+# Allow
+!Datasets/Compressed/links.txt
+!Algorithms/Faiss/*.py

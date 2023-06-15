@@ -1,0 +1,1 @@
+Wikimedia datasets: https://analytics.wikimedia.org/published/datasets/one-off/caption_competition/training/resnet_embeddings/
