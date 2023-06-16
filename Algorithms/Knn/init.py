@@ -11,13 +11,13 @@ def create_knn_index(nearest_neighbors):
     
 def fill_index(knn_index):
     # Read each dataset in the folder and insert its vectors in the index
-    for dataset_name in listdir(PATH_DATASETS):
+    matrix = []
+    for dataset_name in sorted(listdir(PATH_DATASETS)):
         with open(PATH_DATASETS + dataset_name, "r") as dataset:
             datareader = csv.reader(dataset)
             DEBUG(['Loading', dataset_name])
             
             # Add to index
-            matrix = []
             for index, vector in enumerate(datareader):
                 matrix.append(np.array(vector, dtype=np.longdouble))
 

@@ -11,7 +11,7 @@ def create_annoy_index():
 def fill_index(annoy_index):
     # Read each dataset in the folder and insert its vectors in the index
     offset = 0
-    for dataset_name in listdir(PATH_DATASETS):
+    for dataset_name in sorted(listdir(PATH_DATASETS)):
         with open(PATH_DATASETS + dataset_name, "r") as dataset:
             datareader = csv.reader(dataset)
             DEBUG(['Loading', dataset_name])
