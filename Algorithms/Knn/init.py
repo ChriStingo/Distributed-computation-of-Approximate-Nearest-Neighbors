@@ -18,7 +18,7 @@ def fill_index(knn_index):
             DEBUG(['Loading', dataset_name])
             
             # Add to index
-            for index, vector in enumerate(datareader):
+            for vector in datareader:
                 matrix.append(np.array(vector, dtype=np.longdouble))
 
     knn_index.fit(matrix, np.arange(0, len(matrix)))
