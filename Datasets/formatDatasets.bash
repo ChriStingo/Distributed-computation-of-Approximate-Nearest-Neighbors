@@ -1,5 +1,11 @@
 
 rm -rf Images/images.txt
+if [ ! -d ./Vectors/ ]
+    then mkdir ./Vectors/
+fi
+if [ ! -d ./Images/ ]
+    then mkdir ./Images/
+fi
 cd Decompressed/
 for i in *; 
 do 
