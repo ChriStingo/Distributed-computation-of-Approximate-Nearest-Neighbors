@@ -11,6 +11,7 @@ def create_sptag_index():
     sptag_index.SetBuildParam("NumberOfThreads", NUMBER_OF_THREADS, "Index")
     # Set the distance type. Currently SPTAG only support Cosine and L2 distances. Here Cosine distance is not the Cosine similarity. The smaller Cosine distance it is, the better.
     sptag_index.SetBuildParam("DistCalcMethod", DISTANCE, "Index") 
+    return sptag_index
     
 def fill_index(sptag_index):
     # Read each dataset in the folder and insert its vectors in the index
