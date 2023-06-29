@@ -3,7 +3,7 @@ import numpy as np
 from annoy import AnnoyIndex
 from os import listdir
 
-from config import DEBUG, DISTANCE, PATH_INDEX, PATH_DATASETS, get_dataset_columns
+from config import DEBUG, DISTANCE, NUMBER_OF_TREES, PATH_INDEX, PATH_DATASETS, get_dataset_columns
 
 def create_annoy_index():
     return AnnoyIndex(get_dataset_columns(), DISTANCE)
@@ -22,7 +22,7 @@ def fill_index(annoy_index):
                 index += 1
 
 def build_and_save_annoy_index(annoy_index):
-    annoy_index.build(8) # Number of trees
+    annoy_index.build(NUMBER_OF_TREES)
     annoy_index.save(PATH_INDEX)
 
 def main():

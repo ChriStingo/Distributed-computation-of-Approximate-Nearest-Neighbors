@@ -6,6 +6,7 @@ PATH_DATASETS = '../../Datasets/Vectors/' # Path of datasets folder
 PATH_INDEX = '../../Datasets/Indexes/annoyIndex.ann' # Index name
 PATH_IMAGES = '../../Datasets/Images/images.txt'
 DISTANCE = 'angular'  # Metric: "angular", "euclidean", "manhattan", "hamming", or "dot"
+NUMBER_OF_TREES = 8
 
 def DEBUG(elements):
     print(' '.join(map(str, elements)))

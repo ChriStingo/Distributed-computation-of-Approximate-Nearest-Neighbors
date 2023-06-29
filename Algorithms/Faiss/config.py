@@ -6,6 +6,11 @@ PATH_DATASETS = '../../Datasets/Vectors/' # Path of datasets folder
 PATH_INDEX = '../../Datasets/Indexes/faissIndex.faiss' # Index name
 PATH_IMAGES = '../../Datasets/Images/images.txt'
 DISTANCE = 'euclidean'  # Metric: "angular", "euclidean", "manhattan", "hamming", or "dot"
+DATASETS_IN_RAM = 1         # Number of datasets used to train
+D = 2048                    # d-sized vectors
+NLIST = 100                 # 100 coarse divisions of data / number of Voronoi cells
+M = 256			            # number of subquantizers / subvectors
+NBITS = 4		            # number of bits needed to represent codes learnt for each subvector group
 
 def DEBUG(elements):
     print(' '.join(map(str, elements)))
