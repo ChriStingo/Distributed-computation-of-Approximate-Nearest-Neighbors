@@ -18,7 +18,7 @@ def fill_index(annoy_index):
             
             # Add to index
             for vector in datareader:
-                annoy_index.add_item(index, np.array(vector, dtype=np.longdouble))
+                annoy_index.add_item(index, np.array(vector).astype(dtype=np.longdouble))
                 index += 1
 
 def build_and_save_annoy_index(annoy_index):
