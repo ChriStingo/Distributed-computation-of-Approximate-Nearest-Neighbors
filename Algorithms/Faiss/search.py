@@ -7,7 +7,8 @@ def load_faiss_index():
     return faiss.read_index(PATH_INDEX)
 
 def query_faiss_index(faiss_index, query_vector, nearest_neighbors):
-    d, i = faiss_index.search(np.asmatrix(MOCKED_QUERY_VECTOR), nearest_neighbors)
+    # MOCKED_QUERY_VECTOR already normalized with faiss.normalize_L2
+    d, i = faiss_index.search(np.asmatrix(MOCKED_QUERY_VECTOR).astype(np.float32), nearest_neighbors)
     return i
 
 def get_images_by_id(id_list):
