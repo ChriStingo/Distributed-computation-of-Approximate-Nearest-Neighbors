@@ -23,7 +23,7 @@ def train_index(sptag_index):
             
             # Add to index
             for vector in datareader:
-                matrix.append(np.array(vector).astype(np.longdouble))
+                matrix.append(np.array(vector).astype(np.float32))
                 
     if sptag_index.Build(np.asmatrix(matrix), len(matrix), False):
         print("build e save")
