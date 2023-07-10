@@ -25,8 +25,10 @@ def train_index(sptag_index):
             for vector in datareader:
                 matrix.append(np.array(vector).astype(np.longdouble))
                 
-    sptag_index.Build(np.asmatrix(matrix), len(matrix), False)
-    sptag_index.Add(np.asmatrix(matrix), len(matrix), False)
+    if sptag_index.Build(np.asmatrix(matrix), len(matrix), False):
+        print("build e save")
+        sptag_index.Save(PATH_INDEX)
+    #sptag_index.Add(np.asmatrix(matrix), len(matrix), False)
 
 def fill_index(sptag_index):
     # Read each dataset in the folder and insert its vectors in the index
@@ -46,8 +48,8 @@ def build_and_save_sptag_index(sptag_index):
 def main():
     sptag_index = create_sptag_index()
     train_index(sptag_index)
-    fill_index(sptag_index)
-    build_and_save_sptag_index(sptag_index)
+    #fill_index(sptag_index)
+    #build_and_save_sptag_index(sptag_index)
 
 if __name__ == "__main__":
     main()
