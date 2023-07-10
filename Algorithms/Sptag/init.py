@@ -48,6 +48,7 @@ def build_and_save_sptag_index(sptag_index):
 
 def main():
     sptag_index = create_sptag_index()
+    train_index(sptag_index)
     fill_index(sptag_index)
     build_and_save_sptag_index(sptag_index)
 
