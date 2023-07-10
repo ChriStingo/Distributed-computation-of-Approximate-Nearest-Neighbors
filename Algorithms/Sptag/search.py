@@ -10,8 +10,7 @@ def query_sptag_index(sptag_index, query_vector, nearest_neighbors):
     # [0]: nearest k vector ids
     # [1]: nearest k vector distances
     # [2]: nearest k vector metadatas
-    tmp = sptag_index.SearchWithMetaData(query_vector, nearest_neighbors)
-    print(tmp)
+    tmp = sptag_index.Search(query_vector, nearest_neighbors)
     return tmp[0]
 
 def get_images_by_id(id_list):
@@ -21,7 +20,7 @@ def get_images_by_id(id_list):
 
 def main():
     sptag_index = load_sptag_index()
-    sptag_result_id = query_sptag_index(sptag_index, np.array(MOCKED_QUERY_VECTOR).astype(np.longdouble), 5)
+    sptag_result_id = query_sptag_index(sptag_index, np.array(MOCKED_QUERY_VECTOR).astype(np.float32), 5)
     sptag_result_images = get_images_by_id(sptag_result_id)
     print(sptag_result_id)
     print(''.join(sptag_result_images))
