@@ -23,8 +23,8 @@ def train_index(sptag_index):
             for vector in datareader:
                 matrix.append(np.array(vector).astype(np.float32))
                 
-    sptag_index.Build(np.asmatrix(matrix).astype(np.float32), len(matrix), False)
     sptag_index.Add(np.asmatrix(matrix).astype(np.float32), len(matrix), False)
+    sptag_index.Build(np.asmatrix(matrix).astype(np.float32), len(matrix), False)
 
 def fill_index(sptag_index):
     # Read each dataset in the folder and insert its vectors in the index
