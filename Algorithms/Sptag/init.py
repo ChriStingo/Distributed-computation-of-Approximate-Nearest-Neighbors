@@ -2,7 +2,6 @@ import csv
 import numpy as np
 import SPTAG
 from os import listdir
-import pickle
 
 from config import DATASETS_IN_RAM, DEBUG, DISTANCE, NUMBER_OF_THREADS, PATH_INDEX, PATH_DATASETS, get_dataset_columns
 
@@ -42,9 +41,7 @@ def fill_index(sptag_index):
                 sptag_index.Add(to_add, len(to_add), False)
 
 def build_and_save_sptag_index(sptag_index):
-    with open(PATH_INDEX, 'wb') as outp:
-        pickle.dumps(sptag_index, outp)
-    # sptag_index.Save(PATH_INDEX)
+    sptag_index.Save(PATH_INDEX)
 
 def main():
     sptag_index = create_sptag_index()

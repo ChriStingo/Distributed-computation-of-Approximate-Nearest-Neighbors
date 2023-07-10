@@ -1,13 +1,10 @@
 import SPTAG
 import numpy as np
-import pickle
 
 from config import DISTANCE, MOCKED_QUERY_VECTOR, PATH_IMAGES, PATH_INDEX, get_dataset_columns
 
 def load_sptag_index():                          
-    with open(PATH_INDEX, 'rb') as inp:
-        return pickle.load(inp)
-    #return SPTAG.AnnIndex.Load(PATH_INDEX)
+    return SPTAG.AnnIndex.Load(PATH_INDEX)
 
 def query_sptag_index(sptag_index, query_vector, nearest_neighbors):
     # [0]: nearest k vector ids
