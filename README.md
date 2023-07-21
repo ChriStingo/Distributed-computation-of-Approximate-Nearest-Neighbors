@@ -1,4 +1,4 @@
-# **Approximate-Nearest-Neighbors-Searches**
+# **Distributed computation of Approximate Nearest Neighbors**
 This is my master thesis work "Distributed computation of Approximate Nearest Neighbors" for my Master's Degree in Computer Science in external collaboration with [Wikimedia](https://www.wikimedia.org/).  The work focuses on making the image upload service on [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) more efficient, studying how to distribute the computation of Approximate Nearest Neighbors, developing ad hoc solutions, exploring existing possibilities and adapting them to perform distributed searches of similar images within the Wikimedia dataset.
 
 ## **What is this repository**
