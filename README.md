@@ -1,5 +1,5 @@
 # **Distributed computation of Approximate Nearest Neighbors**
-This is my master thesis work "Distributed computation of Approximate Nearest Neighbors" for my Master's Degree in Computer Science in external collaboration with [Wikimedia](https://www.wikimedia.org/).  The work focuses on making the image upload service on [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) more efficient, studying how to distribute the computation of Approximate Nearest Neighbors, developing ad hoc solutions, exploring existing possibilities and adapting them to perform distributed searches of similar images within the Wikimedia dataset.
+This project references to my master thesis work "Distributed computation of Approximate Nearest Neighbors" for my Master's Degree in Computer Science in external collaboration with [Wikimedia](https://www.wikimedia.org/). The work focuses on making the image upload service on [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) more efficient, studying how to distribute the computation of Approximate Nearest Neighbors, developing ad hoc solutions, exploring existing possibilities and adapting them to perform distributed searches of similar images within the Wikimedia dataset.
 
 ## **What is this repository**
 This repository is intended to contain implementations of several libraries for performing similarity (cosine) searches in order to find the best one for my purpose. The various implementations are based on the previously exposed use case.
@@ -46,8 +46,8 @@ The project has been structured in a precise way to ensure easy organization of 
 
 ### **Download some datasets**
 
- 1. Go to [Compressed](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets/Compressed) folder and execute `wget -i links.txt`
- 2. Decompress archives into [Decompressed](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets/Decompressed), in this case `gunzip *.gz`
+ 1. Go to [Compressed](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets/Compressed) folder and execute `wget -i links.txt` to download the Wikimedia dataset ([images](https://analytics.wikimedia.org/published/datasets/one-off/caption_competition/training/image_pixels/), [vectors](https://analytics.wikimedia.org/published/datasets/one-off/caption_competition/training/resnet_embeddings/))
+ 2. Decompress archives into [Decompressed](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets/Decompressed), in Wikimedia dataset case `gunzip *.gz`
  3. Go into [Datasets](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets "Datasets") folder and follow the [README.md](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/blob/main/Datasets/README.md)
  
 ### **Execute the libraries**
