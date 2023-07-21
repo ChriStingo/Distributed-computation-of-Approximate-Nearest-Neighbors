@@ -1,21 +1,21 @@
-# Approximate-Nearest-Neighbors-Searches
+# **Approximate-Nearest-Neighbors-Searches**
 This is my master thesis work "Distributed computation of Approximate Nearest Neighbors" for my Master's Degree in Computer Science in external collaboration with [Wikimedia](https://www.wikimedia.org/).  The work focuses on making the image upload service on [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) more efficient, studying how to distribute the computation of Approximate Nearest Neighbors, developing ad hoc solutions, exploring existing possibilities and adapting them to perform distributed searches of similar images within the Wikimedia dataset.
 
-## What is this repository
+## **What is this repository**
 This repository is intended to contain implementations of several libraries for performing similarity (cosine) searches in order to find the best one for my purpose. The various implementations are based on the previously exposed use case.
 
-#### Approximate Nearest Neighbors
+### **Approximate Nearest Neighbors**
  - [KNN](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html): this library is not approximated and is highly inefficient for my research use case, its implementation has been provided only for comparison purposes with approximated libraries
  - [Annoy](https://github.com/spotify/annoy): this library implements a version of ANN, written by Erik Bernhardsson on behalf of Spotify
  - [FAISS](https://github.com/facebookresearch/faiss): this library was created for efficient similarity searches and clustering of dense vectors by the facebook (now Meta) research team.
  - [SPTAG](https://github.com/microsoft/SPTAG): this library is designed for large scale vector approximate nearest neighbor search, created by Microsoft as an alternative version to their previous library, called DiskANN. Unlike other technologies, this solution involves the use of RAM memory and the physical disk, efficiently managing which and how much information save on them.
 
-#### Distribuited Approximate Nearest Neighbors
+### **Distribuited Approximate Nearest Neighbors**
 - [Distributed-SPTAG](https://github.com/microsoft/SPTAG): this library has already been covered, but not its distributed version. This algorithm, although very efficient, does not add much new to the proposals previously analyzed that runs on a single machine. What makes this library special, however, is that it can be distributed on multiple machines in a very simple way.
 - [Milvus](https://github.com/milvus-io/milvus): this library implements vector database that focuses on providing an efficient system and architecture for similarity searches and AI-powered applications. The need that Milvus tries to satisfy is to provide a complete system capable of operating on huge dynamic datasets, providing solutions that can also run on GPUs also in a distributed way. To do this Milvus was build on libraries that have already been explained as FAISS, making the necessary changes for its use case.
 - [Elasticsearch](https://github.com/elastic/elasticsearch): *work in progress*
 
-## How it is structured
+## **How it is structured**
 The project has been structured in a precise way to ensure easy organization of files and to make navigation within it simple.
 
  - [Algorithms](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Algorithms "Algorithms"): inside this folder you can find all the implementations
@@ -30,8 +30,8 @@ The project has been structured in a precise way to ensure easy organization of 
 	 - [Vectors](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets/Vectors): within this folder it is possible to find the vectors corresponding to the images extracted from the dataset
 	 - [formatDatasets.bash](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/blob/main/Datasets/formatDatasets.bash): this file, executable following this [README.md](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/blob/main/Datasets/README.md), contains the code to decompose all the datasets from the Decompressed folder moving the vectors inside the Vectors/ folder and the corresponding images inside the Images/ folder.
 
-## How to execute
-#### Import / Install / Compile the libraries
+## **How to execute**
+### **Import / Install / Compile the libraries**
  - KNN: `pip install sklearn`
  - Annoy: `pip install annoy`  
  - FAISS: follow the [conda tutorial](https://github.com/facebookresearch/faiss/blob/main/INSTALL.md)
@@ -44,13 +44,13 @@ The project has been structured in a precise way to ensure easy organization of 
 - Milvus: *work in progress*
 - Elasticsearch: *work in progress*
 
-#### Download some datasets
+### **Download some datasets**
 
  1. Go to [Compressed](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets/Compressed) folder and execute `wget -i links.txt`
  2. Decompress archives into [Decompressed](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets/Decompressed), in this case `gunzip *.gz`
  3. Go into [Datasets](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets "Datasets") folder and follow the [README.md](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/blob/main/Datasets/README.md)
  
-#### Execute the libraries
+### **Execute the libraries**
 Before running the libraries customize the various config.py files
 1. `python init.py`
 2. `python search.py`
