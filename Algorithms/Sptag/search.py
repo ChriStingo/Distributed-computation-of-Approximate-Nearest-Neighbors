@@ -1,7 +1,7 @@
 import SPTAG
 import numpy as np
 
-from config import DISTANCE, MOCKED_QUERY_VECTOR, PATH_IMAGES, PATH_INDEX, get_dataset_columns
+from config import MOCKED_QUERY_VECTOR, PATH_IMAGES, PATH_INDEX
 
 def load_sptag_index():                          
     return SPTAG.AnnIndex.Load(PATH_INDEX)

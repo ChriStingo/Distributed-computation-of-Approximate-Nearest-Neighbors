@@ -12,14 +12,13 @@ def create_sptag_index():
     return sptag_index
     
 def train_index(sptag_index):
-     # Read each dataset in the folder and insert its vectors in the index
+    # Read ${DATASETS_IN_RAM} datasets in ${PATH_DATASETS}, insert its vectors in the index and train it
     matrix = []
     for dataset_name in sorted(listdir(PATH_DATASETS))[:DATASETS_IN_RAM]:
         with open(PATH_DATASETS + dataset_name, "r") as dataset:
             datareader = csv.reader(dataset)
             DEBUG(['Loading and training', dataset_name])
             
-            # Add to index
             for vector in datareader:
                 matrix.append(np.array(vector).astype(np.float32))
                 
@@ -27,13 +26,12 @@ def train_index(sptag_index):
     sptag_index.Build(np.asmatrix(matrix).astype(np.float32), len(matrix), False)
 
 def fill_index(sptag_index):
-    # Read each dataset in the folder and insert its vectors in the index
+    # Read the remaining dataset in ${PATH_DATASETS} and insert its vectors in the index
     for dataset_name in sorted(listdir(PATH_DATASETS))[DATASETS_IN_RAM:]:
         with open(PATH_DATASETS + dataset_name, "r") as dataset:
             datareader = csv.reader(dataset)
             DEBUG(['Loading', dataset_name])
             
-            # Add to index
             matrix = []
             for vector in datareader:
                 matrix.append(np.array(vector).astype(np.float32))
