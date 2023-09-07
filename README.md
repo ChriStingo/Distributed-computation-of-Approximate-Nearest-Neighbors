@@ -32,6 +32,13 @@ The project has been structured in a precise way to ensure easy organization of 
 	 - [formatDatasets.bash](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/blob/main/Datasets/formatDatasets.bash): this file, executable following this [README.md](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/blob/main/Datasets/README.md), contains the code to decompose all the datasets from the Decompressed folder moving the vectors inside the Vectors/ folder and the corresponding images inside the Images/ folder.
 
 ## **How to execute**
+
+### **Download some datasets**
+
+ 1. Go to [Compressed](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets/Compressed) folder and execute `wget -i links.txt` to download the Wikimedia dataset ([images](https://analytics.wikimedia.org/published/datasets/one-off/caption_competition/training/image_pixels/), [vectors](https://analytics.wikimedia.org/published/datasets/one-off/caption_competition/training/resnet_embeddings/))
+ 2. Decompress archives into [Decompressed](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets/Decompressed), in Wikimedia dataset case `gunzip *.gz`
+ 3. Go into [Datasets](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets "Datasets") folder and follow the [README.md](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/blob/main/Datasets/README.md)
+
 ### **Import / Install / Compile the libraries**
  - KNN: `pip install scikit-learn`
  - Annoy: `pip install annoy`  
@@ -47,12 +54,6 @@ The project has been structured in a precise way to ensure easy organization of 
 - Milvus: *work in progress*
 - Elasticsearch: *work in progress*
 
-### **Download some datasets**
-
- 1. Go to [Compressed](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets/Compressed) folder and execute `wget -i links.txt` to download the Wikimedia dataset ([images](https://analytics.wikimedia.org/published/datasets/one-off/caption_competition/training/image_pixels/), [vectors](https://analytics.wikimedia.org/published/datasets/one-off/caption_competition/training/resnet_embeddings/))
- 2. Decompress archives into [Decompressed](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets/Decompressed), in Wikimedia dataset case `gunzip *.gz`
- 3. Go into [Datasets](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets "Datasets") folder and follow the [README.md](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/blob/main/Datasets/README.md)
- 
 ### **Execute the ANN libraries**
 
 Before running the libraries customize the various config.py files
