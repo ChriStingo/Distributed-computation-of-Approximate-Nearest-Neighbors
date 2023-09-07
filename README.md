@@ -33,7 +33,7 @@ The project has been structured in a precise way to ensure easy organization of 
 
 ## **How to execute**
 ### **Import / Install / Compile the libraries**
- - KNN: `pip install sklearn`
+ - KNN: `pip install scikit-learn`
  - Annoy: `pip install annoy`  
  - FAISS: follow the [conda tutorial](https://github.com/facebookresearch/faiss/blob/main/INSTALL.md)
  - SPTAG: you can [compile](https://github.com/microsoft/SPTAG/blob/main/README.md) this library via source code, or use Docker. I personally recommend the latter solution, by running these commands:
