@@ -1,4 +1,4 @@
-
+mkdir -p Indexes/
 rm -rf Images/images.txt
 if [ ! -d ./Vectors/ ]
     then mkdir ./Vectors/
