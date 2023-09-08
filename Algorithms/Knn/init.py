@@ -15,12 +15,15 @@ def fill_index(knn_index, chronometer: Chronometer):
     # Read each dataset in ${PATH_DATASETS} and insert its vectors in the index
     matrix = []
     for dataset_name in sorted(listdir(PATH_DATASETS)):
-        with open(PATH_DATASETS + dataset_name, "r") as dataset:
-            datareader = csv.reader(dataset)
-            DEBUG(['Loading', dataset_name])
-            
-            for vector in datareader:
-                matrix.append(np.array(vector, dtype=np.longdouble))
+        try:
+            with open(PATH_DATASETS + dataset_name, "r") as dataset:
+                datareader = csv.reader(dataset)
+                DEBUG(['Loading', dataset_name])
+                
+                for vector in datareader:
+                    matrix.append(np.array(vector, dtype=np.longdouble))
+        except:
+            print("Bad chars in file:", dataset_name)
 
     chronometer.begin_time_window()
     knn_index.fit(matrix, np.arange(0, len(matrix)))
