@@ -4,12 +4,13 @@ import numpy as np
 from os import listdir
 
 from config import DATASETS_IN_RAM, DEBUG, M, D, NBITS, NLIST, PATH_INDEX, PATH_DATASETS
+from chronometer import Chronometer
 
 def create_faiss_index():
     coarse_quantizer = faiss.IndexFlatIP(D)
     return faiss.IndexIVFPQ(coarse_quantizer, D, NLIST, M, NBITS)   
 
-def train_index(faiss_index):
+def train_index(faiss_index, chronometer: Chronometer):
     # Read ${DATASETS_IN_RAM} datasets in ${PATH_DATASETS}, insert its vectors in the index and train it
     matrix = []
     for dataset_name in sorted(listdir(PATH_DATASETS))[:DATASETS_IN_RAM]:
@@ -22,10 +23,13 @@ def train_index(faiss_index):
     norm_matrix = np.asmatrix(matrix)
 
     faiss.normalize_L2(norm_matrix)
+    chronometer.begin_time_window()
     faiss_index.train(norm_matrix)
     faiss_index.add(norm_matrix)
+    chronometer.end_time_window()
 
-def fill_index(faiss_index):
+
+def fill_index(faiss_index, chronometer: Chronometer):
     # Read the remaining dataset in ${PATH_DATASETS} and insert its vectors in the index
     for dataset_name in sorted(listdir(PATH_DATASETS))[DATASETS_IN_RAM:]:
         with open(PATH_DATASETS + dataset_name, "r") as dataset:
@@ -35,16 +39,21 @@ def fill_index(faiss_index):
             for vector in datareader:
                 norm_vector = np.asmatrix(vector).astype(np.float32)
                 faiss.normalize_L2(norm_vector)
+                
+                chronometer.begin_time_window()
                 faiss_index.add(norm_vector)
+                chronometer.end_time_window()
 
 def build_and_save_faiss_index(faiss_index):
     faiss.write_index(faiss_index, PATH_INDEX)
 
 def main():
+    chronometer = Chronometer()
     faiss_index = create_faiss_index()
-    train_index(faiss_index)
-    fill_index(faiss_index)
+    train_index(faiss_index, chronometer)
+    fill_index(faiss_index, chronometer)
     build_and_save_faiss_index(faiss_index)
+    chronometer.get_total_time()
 
 if __name__ == "__main__":
     main()
