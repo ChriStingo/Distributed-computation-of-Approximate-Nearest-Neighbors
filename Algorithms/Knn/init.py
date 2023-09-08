@@ -9,7 +9,7 @@ from config import DEBUG, PATH_INDEX, PATH_DATASETS
 from chronometer import Chronometer
 
 def create_knn_index(nearest_neighbors):
-    return KNeighborsClassifier(nearest_neighbors)
+    return KNeighborsClassifier(nearest_neighbors, metric='cosine')
     
 def fill_index(knn_index, chronometer: Chronometer):
     # Read each dataset in ${PATH_DATASETS} and insert its vectors in the index
@@ -31,7 +31,7 @@ def build_and_save_knn_index(knn_index):
 
 def main():
     chronometer = Chronometer()
-    knn_index = create_knn_index(5)
+    knn_index = create_knn_index(25)
     fill_index(knn_index, chronometer)
     build_and_save_knn_index(knn_index)
     chronometer.get_total_time()
