@@ -6,7 +6,7 @@ PATH_DATASETS = '../../Datasets/Vectors/' # Path of datasets folder
 PATH_INDEX = '../../Datasets/Indexes/sptagIndex.ann' # Index name
 PATH_IMAGES = '../../Datasets/Images/images.txt'
 DISTANCE = 'Cosine'
-NUMBER_OF_THREADS = '4'
+NUMBER_OF_THREADS = '32'
 DATASETS_IN_RAM = 1
 
 def DEBUG(elements):

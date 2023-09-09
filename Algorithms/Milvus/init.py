@@ -44,14 +44,19 @@ def save_milvus_index(collection, chronometer: Chronometer):
     
 def fill_index(collection, chronometer: Chronometer):
     # Read each dataset in ${PATH_DATASETS} and insert its vectors in the index
-    for idx, dataset_name in enumerate(sorted(listdir(PATH_DATASETS))[:2]):
-        with open(PATH_DATASETS + dataset_name, "r") as dataset:
-            matrix = []
-            datareader = csv.reader(dataset)
-            DEBUG(['Loading and training', dataset_name])
-            
-            for vector in datareader:
-                matrix.append(list(map(float, vector)))
+    idx = 0
+    for dataset_name in sorted(listdir(PATH_DATASETS)):
+        try:
+            with open(PATH_DATASETS + dataset_name, "r") as dataset:
+                matrix = []
+                datareader = csv.reader(dataset)
+                DEBUG(['Loading and training', dataset_name])
+                idx += 1
+
+                for vector in datareader:
+                    matrix.append(list(map(float, vector)))
+        except:
+            print("Bad chars in file:", dataset_name)            
         
         chronometer.begin_time_window()
         collection.insert([[i for i in range(len(matrix)*idx, len(matrix)*(idx+1))], matrix])

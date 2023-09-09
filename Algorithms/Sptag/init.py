@@ -17,12 +17,15 @@ def train_index(sptag_index, chronometer: Chronometer):
     # Read ${DATASETS_IN_RAM} datasets in ${PATH_DATASETS}, insert its vectors in the index and train it
     matrix = []
     for dataset_name in sorted(listdir(PATH_DATASETS))[:DATASETS_IN_RAM]:
-        with open(PATH_DATASETS + dataset_name, "r") as dataset:
-            datareader = csv.reader(dataset)
-            DEBUG(['Loading and training', dataset_name])
-            
-            for vector in datareader:
-                matrix.append(np.array(vector).astype(np.float32))
+        try:
+            with open(PATH_DATASETS + dataset_name, "r") as dataset:
+                datareader = csv.reader(dataset)
+                DEBUG(['Loading and training', dataset_name])
+                
+                for vector in datareader:
+                    matrix.append(np.array(vector).astype(np.float32))
+        except:
+            print("Bad chars in file:", dataset_name)
 
     chronometer.begin_time_window()
     sptag_index.Add(np.asmatrix(matrix).astype(np.float32), len(matrix), False)
@@ -32,17 +35,20 @@ def train_index(sptag_index, chronometer: Chronometer):
 def fill_index(sptag_index, chronometer: Chronometer):
     # Read the remaining dataset in ${PATH_DATASETS} and insert its vectors in the index
     for dataset_name in sorted(listdir(PATH_DATASETS))[DATASETS_IN_RAM:]:
-        with open(PATH_DATASETS + dataset_name, "r") as dataset:
-            datareader = csv.reader(dataset)
-            DEBUG(['Loading', dataset_name])
-            
-            matrix = []
-            for vector in datareader:
-                matrix.append(np.array(vector).astype(np.float32))
+        try:
+            with open(PATH_DATASETS + dataset_name, "r") as dataset:
+                datareader = csv.reader(dataset)
+                DEBUG(['Loading', dataset_name])
                 
-            chronometer.begin_time_window()
-            sptag_index.Add(np.asmatrix(matrix).astype(np.float32), len(matrix), False)
-            chronometer.end_time_window()
+                matrix = []
+                for vector in datareader:
+                    matrix.append(np.array(vector).astype(np.float32))
+                    
+                chronometer.begin_time_window()
+                sptag_index.Add(np.asmatrix(matrix).astype(np.float32), len(matrix), False)
+                chronometer.end_time_window()
+        except:
+            print("Bad chars in file:", dataset_name)
 
 def build_and_save_sptag_index(sptag_index):
     sptag_index.Save(PATH_INDEX)

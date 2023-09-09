@@ -9,7 +9,7 @@ from config import DEBUG, PATH_INDEX, PATH_DATASETS
 from chronometer import Chronometer
 
 def create_knn_index(nearest_neighbors):
-    return KNeighborsClassifier(nearest_neighbors, metric='cosine')
+    return KNeighborsClassifier(n_neighbors = nearest_neighbors, metric='cosine')
     
 def fill_index(knn_index, chronometer: Chronometer):
     # Read each dataset in ${PATH_DATASETS} and insert its vectors in the index
@@ -22,9 +22,10 @@ def fill_index(knn_index, chronometer: Chronometer):
                 
                 for vector in datareader:
                     matrix.append(np.array(vector, dtype=np.longdouble))
+
         except:
             print("Bad chars in file:", dataset_name)
-
+    
     chronometer.begin_time_window()
     knn_index.fit(matrix, np.arange(0, len(matrix)))
     chronometer.end_time_window()
