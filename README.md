@@ -11,7 +11,7 @@ This repository is intended to contain implementations of several libraries for 
  - [SPTAG](https://github.com/microsoft/SPTAG): this library is designed for large scale vector approximate nearest neighbor search, created by Microsoft as an alternative version to their previous library, called DiskANN. Unlike other technologies, this solution involves the use of RAM memory and the physical disk, efficiently managing which and how much information save on them.
 
 ### **Distribuited Approximate Nearest Neighbors**
-- [Distributed-FAISS](https://github.com/facebookresearch/distributed-faiss): *work in progress*
+- [Distributed-FAISS](https://github.com/facebookresearch/distributed-faiss): this library has already been covered, but not its distributed version. This algorithm, although very efficient, does not add much new to the proposals previously analyzed that runs on a single machine. What makes this library special, however, is that it can be distributed on multiple machines in a very simple way.
 - [Distributed-SPTAG](https://github.com/microsoft/SPTAG): this library has already been covered, but not its distributed version. This algorithm, although very efficient, does not add much new to the proposals previously analyzed that runs on a single machine. What makes this library special, however, is that it can be distributed on multiple machines in a very simple way.
 - [Milvus](https://github.com/milvus-io/milvus): this library implements vector database that focuses on providing an efficient system and architecture for similarity searches and AI-powered applications. The need that Milvus tries to satisfy is to provide a complete system capable of operating on huge dynamic datasets, providing solutions that can also run on GPUs also in a distributed way. To do this Milvus was build on libraries that have already been explained as FAISS, making the necessary changes for its use case.
 - [Elasticsearch](https://github.com/elastic/elasticsearch): *work in progress*
@@ -49,9 +49,9 @@ The project has been structured in a precise way to ensure easy organization of 
 	 git clone --recurse-submodules https://github.com/microsoft/SPTAG
 	 docker build -t sptag .
 	 ```
-- Distributed-FAISS: *work in progress*
+- Distributed-FAISS: clone the [repository](https://github.com/facebookresearch/distributed-faiss) and then run `pip install -e .`
 - Distributed-SPTAG: follow the instruction for *SPTAG*
-- Milvus: *work in progress*
+- Milvus: milvus can be install with [docker compose](https://milvus.io/docs/install_standalone-docker.md) or [Kubernetes](https://milvus.io/docs/install_standalone-helm.md) (Milvus Standalone for testing) or with [Helm + Kubernetes](https://milvus.io/docs/install_cluster-helm.md) (Milvus Cluster for production)
 - Elasticsearch: *work in progress*
 
 ### **Execute the ANN libraries**
@@ -61,12 +61,15 @@ Before running the libraries customize the various config.py files
 2. `python search.py`
 
 ### **Execute the Distributed-ANN libraries**
+Before running the libraries customize the various config.py files
 - Distributed-FAISS: *work in progress*
 - Distributed-SPTAG:
 	1. Go to the servers hosting the previously created index. In the Release folder of the library, import and customize the [service.ini](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Algorithms/Distributed-Sptag/service.ini "service.ini") file and run the command `./server -m socket -c service.ini`
 	2. Go to the machine you identify as the aggregator. In the Release folder of the library, import and customize the [Aggregator.ini](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Algorithms/Distributed-Sptag/Aggregator.ini "Aggregator.ini") file and run the command `./Aggregator`
 	3. Go to the client, customize the config.py file, and execute `python search.py`
-- Milvus: *work in progress*
+- Milvus:
+  	1. `python init.py`
+	2. `python search.py`
 - Elasticsearch: *work in progress*
 
 
