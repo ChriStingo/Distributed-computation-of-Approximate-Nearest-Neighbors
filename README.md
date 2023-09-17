@@ -62,7 +62,11 @@ Before running the libraries customize the various config.py files
 
 ### **Execute the Distributed-ANN libraries**
 Before running the libraries customize the various config.py files
-- Distributed-FAISS: *work in progress*
+- Distributed-FAISS: 
+	1. Customize the DISCOVERY_CONFIG.TXT file.
+  	2. Execute on each server `python init_server.py`
+  	3. Execute on the client `python init_client.py`
+  	4. Execute on the client `python search.py`
 - Distributed-SPTAG:
 	1. Go to the servers hosting the previously created index. In the Release folder of the library, import and customize the [service.ini](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Algorithms/Distributed-Sptag/service.ini "service.ini") file and run the command `./server -m socket -c service.ini`
 	2. Go to the machine you identify as the aggregator. In the Release folder of the library, import and customize the [Aggregator.ini](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Algorithms/Distributed-Sptag/Aggregator.ini "Aggregator.ini") file and run the command `./Aggregator`

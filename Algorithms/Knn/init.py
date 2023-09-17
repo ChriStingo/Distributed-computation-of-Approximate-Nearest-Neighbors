@@ -25,7 +25,7 @@ def fill_index(knn_index, chronometer: Chronometer):
 
         except:
             print("Bad chars in file:", dataset_name)
-    
+    print("creazione")
     chronometer.begin_time_window()
     knn_index.fit(matrix, np.arange(0, len(matrix)))
     chronometer.end_time_window()

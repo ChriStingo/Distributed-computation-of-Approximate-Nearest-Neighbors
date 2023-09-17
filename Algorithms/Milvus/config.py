@@ -3,7 +3,6 @@ import numpy as np
 
 
 PATH_DATASETS = '../../Datasets/Vectors/' # Path of datasets folder
-PATH_INDEX = '../../Datasets/Indexes/annoyIndex.ann' # Index name
 PATH_IMAGES = '../../Datasets/Images/images.txt'
 INDEX_PARAMS = {
         "metric_type":"L2",

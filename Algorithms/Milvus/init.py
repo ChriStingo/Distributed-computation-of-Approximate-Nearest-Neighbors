@@ -55,12 +55,12 @@ def fill_index(collection, chronometer: Chronometer):
 
                 for vector in datareader:
                     matrix.append(list(map(float, vector)))
+            
+                chronometer.begin_time_window()
+                collection.insert([[i for i in range(len(matrix)*(idx-1), len(matrix)*idx)], matrix])
+                chronometer.end_time_window()
         except:
             print("Bad chars in file:", dataset_name)            
-        
-        chronometer.begin_time_window()
-        collection.insert([[i for i in range(len(matrix)*idx, len(matrix)*(idx+1))], matrix])
-        chronometer.end_time_window()
 
 def main():
     chronometer = Chronometer()

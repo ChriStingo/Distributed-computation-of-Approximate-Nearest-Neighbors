@@ -37,10 +37,10 @@ def fill_index(sptag_index, chronometer: Chronometer):
     for dataset_name in sorted(listdir(PATH_DATASETS))[DATASETS_IN_RAM:]:
         try:
             with open(PATH_DATASETS + dataset_name, "r") as dataset:
+                matrix = []
                 datareader = csv.reader(dataset)
                 DEBUG(['Loading', dataset_name])
                 
-                matrix = []
                 for vector in datareader:
                     matrix.append(np.array(vector).astype(np.float32))
                     
