@@ -40,6 +40,7 @@ The project has been structured in a precise way to ensure easy organization of 
  3. Go into [Datasets](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets "Datasets") folder and follow the [README.md](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/blob/main/Datasets/README.md)
 
 ### **Import / Install / Compile the libraries**
+First go into [Algorithms](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Algorithms "Algorithms") folder and install general requirements with `pip install -r requirements.txt`. 
  - KNN: `pip install scikit-learn`
  - Annoy: `pip install annoy`  
  - FAISS: follow the [conda tutorial](https://github.com/facebookresearch/faiss/blob/main/INSTALL.md)
@@ -51,7 +52,7 @@ The project has been structured in a precise way to ensure easy organization of 
 	 ```
 - Distributed-FAISS: clone the [repository](https://github.com/facebookresearch/distributed-faiss) and then run `pip install -e .`
 - Distributed-SPTAG: follow the instruction for *SPTAG*
-- Milvus: milvus can be install with [docker compose](https://milvus.io/docs/install_standalone-docker.md) or [Kubernetes](https://milvus.io/docs/install_standalone-helm.md) (Milvus Standalone for testing) or with [Helm + Kubernetes](https://milvus.io/docs/install_cluster-helm.md) (Milvus Cluster for production)
+- Milvus: `pip install pymilvus` and then milvus can be install with [docker compose](https://milvus.io/docs/install_standalone-docker.md) or [Kubernetes](https://milvus.io/docs/install_standalone-helm.md) (Milvus Standalone for testing) or with [Helm + Kubernetes](https://milvus.io/docs/install_cluster-helm.md) (Milvus Cluster for production)
 - Elasticsearch: *work in progress*
 
 ### **Execute the ANN libraries**
@@ -63,7 +64,7 @@ Before running the libraries customize the various config.py files
 ### **Execute the Distributed-ANN libraries**
 Before running the libraries customize the various config.py files
 - Distributed-FAISS: 
-	1. Customize the DISCOVERY_CONFIG.TXT file.
+	1. Customize the [DISCOVERY_CONFIG.txt]('https://github.com/ChriStingo/Distributed-computation-of-Approximate-Nearest-Neighbors/blob/main/Algorithms/Distributed-Faiss/DISCOVERY_CONFIG.txt') file.
   	2. Execute on each server `python init_server.py`
   	3. Execute on the client `python init_client.py`
   	4. Execute on the client `python search.py`
