@@ -3,7 +3,7 @@ import faiss
 import numpy as np
 from os import listdir
 
-from config import DATASETS_IN_RAM, DEBUG, M, D, NBITS, NLIST, PATH_INDEX, PATH_DATASETS
+from config import DATASETS_USED_TO_TRAIN, DEBUG, M, D, NBITS, NLIST, PATH_INDEX, PATH_DATASETS
 from chronometer import Chronometer
 
 def create_faiss_index():
@@ -11,9 +11,9 @@ def create_faiss_index():
     return faiss.IndexIVFPQ(coarse_quantizer, D, NLIST, M, NBITS)   
 
 def train_index(faiss_index, chronometer: Chronometer):
-    # Read ${DATASETS_IN_RAM} datasets in ${PATH_DATASETS}, insert its vectors in the index and train it
+    # Read ${DATASETS_USED_TO_TRAIN} datasets in ${PATH_DATASETS}, insert its vectors in the index and train it
     matrix = []
-    for dataset_name in sorted(listdir(PATH_DATASETS))[:DATASETS_IN_RAM]:
+    for dataset_name in sorted(listdir(PATH_DATASETS))[:DATASETS_USED_TO_TRAIN]:
         try:
             with open(PATH_DATASETS + dataset_name, "r") as dataset:
                 datareader = csv.reader(dataset)
@@ -34,7 +34,7 @@ def train_index(faiss_index, chronometer: Chronometer):
 
 def fill_index(faiss_index, chronometer: Chronometer):
     # Read the remaining dataset in ${PATH_DATASETS} and insert its vectors in the index
-    for dataset_name in sorted(listdir(PATH_DATASETS))[DATASETS_IN_RAM:]:
+    for dataset_name in sorted(listdir(PATH_DATASETS))[DATASETS_USED_TO_TRAIN:]:
         try:
             with open(PATH_DATASETS + dataset_name, "r") as dataset:
                 datareader = csv.reader(dataset)

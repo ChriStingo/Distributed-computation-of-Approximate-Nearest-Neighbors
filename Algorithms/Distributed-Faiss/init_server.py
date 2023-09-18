@@ -1,7 +1,8 @@
 from config import INDEX_ALREADY_CREATED, PATH_DATASETS
 from distributed_faiss.server import IndexServer
 
-SERVER_ID = 0
+''' ### SINGLE SERVER CONFIG ### '''
+SERVER_ID = 0       # different for each server
 SERVER_PORT = 8081
 
 def main():

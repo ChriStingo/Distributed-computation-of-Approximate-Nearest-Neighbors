@@ -3,7 +3,7 @@ import numpy as np
 import SPTAG
 from os import listdir
 
-from config import DATASETS_IN_RAM, DEBUG, DISTANCE, NUMBER_OF_THREADS, PATH_INDEX, PATH_DATASETS, get_dataset_columns
+from config import DATASETS_USED_TO_TRAIN, DEBUG, DISTANCE, NUMBER_OF_THREADS, PATH_INDEX, PATH_DATASETS, get_dataset_columns
 from chronometer import Chronometer
 
 def create_sptag_index():
@@ -13,9 +13,9 @@ def create_sptag_index():
     return sptag_index
     
 def train_index(sptag_index, chronometer: Chronometer):
-    # Read ${DATASETS_IN_RAM} datasets in ${PATH_DATASETS}, insert its vectors in the index and train it
+    # Read ${DATASETS_USED_TO_TRAIN} datasets in ${PATH_DATASETS}, insert its vectors in the index and train it
     matrix = []
-    for dataset_name in sorted(listdir(PATH_DATASETS))[:DATASETS_IN_RAM]:
+    for dataset_name in sorted(listdir(PATH_DATASETS))[:DATASETS_USED_TO_TRAIN]:
         try:
             with open(PATH_DATASETS + dataset_name, "r") as dataset:
                 datareader = csv.reader(dataset)
@@ -34,7 +34,7 @@ def train_index(sptag_index, chronometer: Chronometer):
 
 def fill_index(sptag_index, chronometer: Chronometer):
     # Read the remaining dataset in ${PATH_DATASETS} and insert its vectors in the index
-    for dataset_name in sorted(listdir(PATH_DATASETS))[DATASETS_IN_RAM:]:
+    for dataset_name in sorted(listdir(PATH_DATASETS))[DATASETS_USED_TO_TRAIN:]:
         try:
             with open(PATH_DATASETS + dataset_name, "r") as dataset:
                 datareader = csv.reader(dataset)
