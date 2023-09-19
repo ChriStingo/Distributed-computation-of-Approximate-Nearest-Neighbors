@@ -51,7 +51,7 @@ First go into [Algorithms](https://github.com/ChriStingo/Approximate-Nearest-Nei
  	 cd SPTAG
 	 docker build -t sptag .
 	 ```
-- Distributed-FAISS: clone the [repository](https://github.com/facebookresearch/distributed-faiss) and then run `pip install -e .`
+- Distributed-FAISS: clone the [repository](https://github.com/facebookresearch/distributed-faiss), enter the folder and then run `pip install -e .`
 - Distributed-SPTAG: follow the instruction for *SPTAG*
 - Milvus: `pip install pymilvus` and then milvus can be install with [docker compose](https://milvus.io/docs/install_standalone-docker.md) or [Kubernetes](https://milvus.io/docs/install_standalone-helm.md) (Milvus Standalone for testing) or with [Helm + Kubernetes](https://milvus.io/docs/install_cluster-helm.md) (Milvus Cluster for production)
 - Elasticsearch: *work in progress*
