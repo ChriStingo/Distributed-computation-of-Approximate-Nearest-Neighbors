@@ -48,6 +48,7 @@ First go into [Algorithms](https://github.com/ChriStingo/Approximate-Nearest-Nei
 	```bash
 	 set GIT_LFS_SKIP_SMUDGE=1 
 	 git clone --recurse-submodules https://github.com/microsoft/SPTAG
+ 	 cd SPTAG
 	 docker build -t sptag .
 	 ```
 - Distributed-FAISS: clone the [repository](https://github.com/facebookresearch/distributed-faiss) and then run `pip install -e .`
