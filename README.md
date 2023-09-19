@@ -46,11 +46,11 @@ First go into [Algorithms](https://github.com/ChriStingo/Approximate-Nearest-Nei
  - FAISS: follow the [conda tutorial](https://github.com/facebookresearch/faiss/blob/main/INSTALL.md)
  - SPTAG: you can [compile](https://github.com/microsoft/SPTAG/blob/main/README.md) this library via source code, or use Docker. I personally recommend the latter solution, by running these commands:
 	```bash
-	 set GIT_LFS_SKIP_SMUDGE=1 
-	 git clone --recurse-submodules https://github.com/microsoft/SPTAG
- 	 cd SPTAG
-	 docker build -t sptag .
-	 ```
+ 	set GIT_LFS_SKIP_SMUDGE=1 
+	git clone --recurse-submodules https://github.com/microsoft/SPTAG
+ 	cd SPTAG
+	docker build -t sptag .
+	```
 - Distributed-FAISS: clone the [repository](https://github.com/facebookresearch/distributed-faiss), enter the folder and then run `pip install -e .`
 - Distributed-SPTAG: follow the instruction for *SPTAG*
 - Milvus: `pip install pymilvus` and then milvus can be install with [docker compose](https://milvus.io/docs/install_standalone-docker.md) or [Kubernetes](https://milvus.io/docs/install_standalone-helm.md) (Milvus Standalone for testing) or with [Helm + Kubernetes](https://milvus.io/docs/install_cluster-helm.md) (Milvus Cluster for production)
