@@ -3,12 +3,11 @@ import faiss
 import numpy as np
 from os import listdir
 
-from config import DATASETS_USED_TO_TRAIN, DEBUG, M, D, NBITS, NLIST, PATH_INDEX, PATH_DATASETS
+from config import DATASETS_USED_TO_TRAIN, DEBUG, D, FACTORY_STRING, PATH_INDEX, PATH_DATASETS
 from chronometer import Chronometer
 
-def create_faiss_index():
-    coarse_quantizer = faiss.IndexFlatIP(D)
-    return faiss.IndexIVFPQ(coarse_quantizer, D, NLIST, M, NBITS)   
+def create_faiss_index():  
+    return faiss.index_factory(D, FACTORY_STRING)
 
 def train_index(faiss_index, chronometer: Chronometer):
     # Read ${DATASETS_USED_TO_TRAIN} datasets in ${PATH_DATASETS}, insert its vectors in the index and train it

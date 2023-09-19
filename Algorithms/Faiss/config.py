@@ -1,15 +1,13 @@
 ''' ### PATHS ### '''
-PATH_DATASETS = '../../Datasets/Vectors/' # Path of datasets folder
-PATH_INDEX = '../../Datasets/Indexes/faissIndex.faiss' # Index name
+PATH_DATASETS = '../../Datasets/Vectors/'
+PATH_INDEX = '../../Datasets/Indexes/faissIndex.faiss'
 PATH_IMAGES = '../../Datasets/Images/images.txt'
 
 
 ''' ### INDEX CONFIG ### '''
 DATASETS_USED_TO_TRAIN = 3         # Number of datasets used to train
-D = 2048                    # d-sized vectors
-NLIST = 100                 # 100 coarse divisions of data / number of Voronoi cells
-M = 256			            # number of subquantizers / subvectors
-NBITS = 4		            # number of bits needed to represent codes learnt for each subvector group
+D = 2048                           # d-sized vectors
+FACTORY_STRING = "IVF1024,PQ" + str(int(D/4)) + "x4fs,RFlat"
 
 
 ''' ### UTILS ### '''
