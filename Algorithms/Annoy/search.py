@@ -15,7 +15,7 @@ def query_annoy_index(annoy_index, query_vector, nearest_neighbors, chronometer:
     # VECTOR: print(annoy_index.get_nns_by_vector(query_vector, nearest_neighbors))
     chronometer.begin_time_window()
     result = annoy_index.get_nns_by_vector(MOCKED_QUERY_VECTOR_1, nearest_neighbors)
-    chronometer.end_time_window
+    chronometer.end_time_window()
     return result
 
 def get_images_by_id(id_list):
