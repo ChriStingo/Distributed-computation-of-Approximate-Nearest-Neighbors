@@ -7,8 +7,8 @@ PATH_IMAGES = '../../Datasets/Images/images.txt'
 ''' ### INDEX CONFIG ### '''
 DATASETS_USED_TO_TRAIN = 16         # Number of datasets used to train
 D = 2048                           # d-sized vectors
-FACTORY_STRING = "IMI2x5,PQ" + str(int(D/4)) + "x4fs,RFlat"
-
+FACTORY_STRING = "OPQ16_64,IMI2x1,PQ64x4fs,RFlat"
+# "OPQ2_128,IVF1024,PQ128x4fs,RFlat"
 
 ''' ### UTILS ### '''
 def DEBUG(elements):
