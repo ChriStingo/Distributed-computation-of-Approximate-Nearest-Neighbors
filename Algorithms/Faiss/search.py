@@ -22,7 +22,7 @@ def get_images_by_id(id_list):
 def main():
     chronometer = Chronometer()
     faiss_index = load_faiss_index()
-    faiss_result_id = query_faiss_index(faiss_index, [], 5)[0]
+    faiss_result_id = query_faiss_index(faiss_index, [], 15, chronometer)[0]
     faiss_result_images = get_images_by_id(faiss_result_id)
     print(faiss_result_id)
     print(''.join(faiss_result_images))

@@ -23,7 +23,7 @@ def get_images_by_id(id_list):
 def main():
     chronometer = Chronometer()
     knn_index = load_knn_index()
-    knn_result_id = query_knn_index(knn_index, MOCKED_QUERY_VECTOR)
+    knn_result_id = query_knn_index(knn_index, MOCKED_QUERY_VECTOR, chronometer)
     knn_result_images = get_images_by_id(knn_result_id)
     print(knn_result_id)
     print(''.join(knn_result_images))

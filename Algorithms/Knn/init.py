@@ -22,7 +22,6 @@ def fill_index(knn_index, chronometer: Chronometer):
             for vector in datareader:
                 matrix.append(np.array(vector, dtype=np.longdouble))
 
-    print("creazione")
     chronometer.begin_time_window()
     knn_index.fit(matrix, np.arange(0, len(matrix)))
     chronometer.end_time_window()
