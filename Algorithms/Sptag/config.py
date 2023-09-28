@@ -7,7 +7,7 @@ PATH_IMAGES = '../../Datasets/Images/images.txt'
 ''' ### INDEX CONFIG ### '''
 DISTANCE = 'Cosine'
 NUMBER_OF_THREADS = '32'
-DATASETS_USED_TO_TRAIN = 1
+DATASETS_USED_TO_TRAIN = 16
 
 
 ''' ### UTILS ### '''
