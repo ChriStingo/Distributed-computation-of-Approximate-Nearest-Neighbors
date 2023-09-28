@@ -24,6 +24,7 @@ The project has been structured in a precise way to ensure easy organization of 
 		 - config.py: this file contains the configurations necessary for the correct operation of the libraries
 		 - init.py: this file contains the code for reading datasets, training data structures and creating the index
 		 - search.py: this file contains the code for performing searches and returning the resulting items
+     		 - other files: chronometer.py, mocks.py
  - [Datasets](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets "Datasets"): the datasets and data structures saved in memory will be inserted inside this folder
 	 - [Compressed](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets/Compressed): in this folder it is possible to insert the compressed datasets, as can be seen from the example inserted. you may also notice a file called [links.txt](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/blob/main/Datasets/Compressed/links.txt) containing all Wikimedia datasets
 	 - [Decompressed](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets/Decompressed): in this folder it is possible to insert the decompressed datasets, from here they will be filtered and decomposed for a correct functioning of the libraries
