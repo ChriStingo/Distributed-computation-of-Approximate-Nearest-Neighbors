@@ -2,7 +2,7 @@ from distributed_faiss.client import IndexClient
 from distributed_faiss.index_cfg import IndexCfg
 import numpy as np
 import time
-from Algorithms.mocks.vectors import MOCKED_QUERY_VECTOR_1
+from mocks import MOCKED_QUERY_VECTOR_1
 from chronometer import Chronometer
 from config import D, M, INDEX_TYPE, INDEX_FACTORY, DISTANCE, INDEX_ID, NBITS, PATH_IMAGES, ADDR_IP_AGGREGATOR, ADDR_PORT_AGGREGATOR, PATH_INDEX 
 

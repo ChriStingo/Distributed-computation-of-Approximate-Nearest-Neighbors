@@ -1,6 +1,6 @@
 import numpy as np
 from pymilvus import Collection, connections
-from Algorithms.mocks.vectors import MOCKED_QUERY_VECTOR_1
+from mocks import MOCKED_QUERY_VECTOR_1
 from chronometer import Chronometer
 
 from config import PATH_IMAGES

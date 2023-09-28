@@ -1,8 +1,7 @@
 import faiss
 import numpy as np
-from Algorithms.mocks.vectors import MOCKED_QUERY_VECTOR_1
+from mocks import MOCKED_QUERY_VECTOR_1
 from chronometer import Chronometer
-
 from config import PATH_IMAGES, PATH_INDEX
 
 def load_faiss_index():                          

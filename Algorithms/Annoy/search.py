@@ -1,4 +1,4 @@
-from Algorithms.mocks.vectors import MOCKED_QUERY_VECTOR_1
+from mocks import MOCKED_QUERY_VECTOR_1
 from annoy import AnnoyIndex
 import numpy as np
 from chronometer import Chronometer

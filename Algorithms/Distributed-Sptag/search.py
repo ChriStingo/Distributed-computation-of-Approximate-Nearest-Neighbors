@@ -1,4 +1,4 @@
-from Algorithms.mocks.vectors import MOCKED_QUERY_VECTOR_1
+from mocks import MOCKED_QUERY_VECTOR_1
 import SPTAG
 import SPTAGClient
 import numpy as np
