@@ -1,8 +1,9 @@
 import numpy as np
 from pymilvus import Collection, connections
+from Algorithms.mocks.vectors import MOCKED_QUERY_VECTOR_1
 from chronometer import Chronometer
 
-from config import MOCKED_QUERY_VECTOR, PATH_IMAGES
+from config import PATH_IMAGES
 
 def load_milvus_index():                          
     connections.connect("default", host="localhost", port="19530")
@@ -14,7 +15,7 @@ def query_milvus_index(collection, query_vector, nearest_neighbors, chronometer:
     search_params = {"metric_type": "L2", "params": {"nprobe": 10}}
     chronometer.begin_time_window()
     results = collection.search(
-        data=[MOCKED_QUERY_VECTOR], 
+        data=[MOCKED_QUERY_VECTOR_1], 
         anns_field="images", 
         param=search_params, 
         limit=nearest_neighbors, 

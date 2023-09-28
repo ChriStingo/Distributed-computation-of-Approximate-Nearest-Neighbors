@@ -1,3 +1,4 @@
+from Algorithms.mocks.vectors import MOCKED_QUERY_VECTOR_1
 from annoy import AnnoyIndex
 import numpy as np
 from chronometer import Chronometer
@@ -13,7 +14,7 @@ def load_annoy_index():
 def query_annoy_index(annoy_index, query_vector, nearest_neighbors, chronometer: Chronometer):
     # VECTOR: print(annoy_index.get_nns_by_vector(query_vector, nearest_neighbors))
     chronometer.begin_time_window()
-    result = annoy_index.get_nns_by_item(1, nearest_neighbors)
+    result = annoy_index.get_nns_by_vector(MOCKED_QUERY_VECTOR_1, nearest_neighbors)
     chronometer.end_time_window
     return result
 

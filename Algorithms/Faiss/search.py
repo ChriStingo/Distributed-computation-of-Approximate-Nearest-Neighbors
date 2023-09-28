@@ -1,8 +1,9 @@
 import faiss
 import numpy as np
+from Algorithms.mocks.vectors import MOCKED_QUERY_VECTOR_1
 from chronometer import Chronometer
 
-from config import MOCKED_QUERY_VECTOR, PATH_IMAGES, PATH_INDEX
+from config import PATH_IMAGES, PATH_INDEX
 
 def load_faiss_index():                          
     return faiss.read_index(PATH_INDEX)
@@ -10,7 +11,7 @@ def load_faiss_index():
 def query_faiss_index(faiss_index, query_vector, nearest_neighbors, chronometer: Chronometer):
     # MOCKED_QUERY_VECTOR already normalized with faiss.normalize_L2
     chronometer.begin_time_window()
-    d, i = faiss_index.search(np.asmatrix(MOCKED_QUERY_VECTOR).astype(np.float32), nearest_neighbors)
+    d, i = faiss_index.search(np.asmatrix(MOCKED_QUERY_VECTOR_1).astype(np.float32), nearest_neighbors)
     chronometer.end_time_window()
     return i
 

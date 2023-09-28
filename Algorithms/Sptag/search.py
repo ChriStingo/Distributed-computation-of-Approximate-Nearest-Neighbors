@@ -1,8 +1,9 @@
+from Algorithms.mocks.vectors import MOCKED_QUERY_VECTOR_1
 import SPTAG
 import numpy as np
 from chronometer import Chronometer
 
-from config import MOCKED_QUERY_VECTOR, PATH_IMAGES, PATH_INDEX
+from config import PATH_IMAGES, PATH_INDEX
 
 def load_sptag_index():                          
     return SPTAG.AnnIndex.Load(PATH_INDEX)
@@ -24,7 +25,7 @@ def get_images_by_id(id_list):
 def main():
     chronometer = Chronometer()
     sptag_index = load_sptag_index()
-    sptag_result_id = query_sptag_index(sptag_index, np.array(MOCKED_QUERY_VECTOR).astype(np.float32), 5)
+    sptag_result_id = query_sptag_index(sptag_index, np.array(MOCKED_QUERY_VECTOR_1).astype(np.float32), 5)
     sptag_result_images = get_images_by_id(sptag_result_id)
     print(sptag_result_id)
     print(''.join(sptag_result_images))
