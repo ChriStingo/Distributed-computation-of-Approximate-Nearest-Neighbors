@@ -7,13 +7,13 @@ This repository is intended to contain implementations of several libraries for 
 ### **Approximate Nearest Neighbors**
  - [KNN](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html): this library is not approximated and is highly inefficient for my research use case, its implementation has been provided only for comparison purposes with approximated libraries
  - [Annoy](https://github.com/spotify/annoy): this library implements a version of ANN, written by Erik Bernhardsson on behalf of Spotify
- - [FAISS](https://github.com/facebookresearch/faiss): this library was created for efficient similarity searches and clustering of dense vectors by the facebook (now Meta) research team.
+ - [Faiss](https://github.com/facebookresearch/faiss): this library was created for efficient similarity searches and clustering of dense vectors by the facebook (now Meta) research team.
  - [SPTAG](https://github.com/microsoft/SPTAG): this library is designed for large scale vector approximate nearest neighbor search, created by Microsoft as an alternative version to their previous library, called DiskANN. Unlike other technologies, this solution involves the use of RAM memory and the physical disk, efficiently managing which and how much information save on them.
 
 ### **Distribuited Approximate Nearest Neighbors**
-- [Distributed-FAISS](https://github.com/facebookresearch/distributed-faiss): this library has already been covered, but not its distributed version. This algorithm, although very efficient, does not add much new to the proposals previously analyzed that runs on a single machine. What makes this library special, however, is that it can be distributed on multiple machines in a very simple way.
+- [Distributed-Faiss](https://github.com/facebookresearch/distributed-faiss): this library has already been covered, but not its distributed version. This algorithm, although very efficient, does not add much new to the proposals previously analyzed that runs on a single machine. What makes this library special, however, is that it can be distributed on multiple machines in a very simple way.
 - [Distributed-SPTAG](https://github.com/microsoft/SPTAG): this library has already been covered, but not its distributed version. This algorithm, although very efficient, does not add much new to the proposals previously analyzed that runs on a single machine. What makes this library special, however, is that it can be distributed on multiple machines in a very simple way.
-- [Milvus](https://github.com/milvus-io/milvus): this library implements vector database that focuses on providing an efficient system and architecture for similarity searches and AI-powered applications. The need that Milvus tries to satisfy is to provide a complete system capable of operating on huge dynamic datasets, providing solutions that can also run on GPUs also in a distributed way. To do this Milvus was build on libraries that have already been explained as FAISS, making the necessary changes for its use case.
+- [Milvus](https://github.com/milvus-io/milvus): this library implements vector database that focuses on providing an efficient system and architecture for similarity searches and AI-powered applications. The need that Milvus tries to satisfy is to provide a complete system capable of operating on huge dynamic datasets, providing solutions that can also run on GPUs also in a distributed way. To do this Milvus was build on libraries that have already been explained as Faiss, making the necessary changes for its use case.
 
 ## **How it is structured**
 The project has been structured in a precise way to ensure easy organization of files and to make navigation within it simple.
@@ -43,7 +43,7 @@ The project has been structured in a precise way to ensure easy organization of 
 First go into [Algorithms](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Algorithms "Algorithms") folder and install general requirements with `pip install -r requirements.txt`. 
  - KNN: `pip install scikit-learn`
  - Annoy: `pip install annoy`  
- - FAISS: follow the [conda tutorial](https://github.com/facebookresearch/faiss/blob/main/INSTALL.md)
+ - Faiss: follow the [conda tutorial](https://github.com/facebookresearch/faiss/blob/main/INSTALL.md)
  - SPTAG: you can [compile](https://github.com/microsoft/SPTAG/blob/main/README.md) this library via source code, or use Docker. I personally recommend the latter solution, by running these commands:
 	```bash
  	set GIT_LFS_SKIP_SMUDGE=1 
@@ -51,7 +51,7 @@ First go into [Algorithms](https://github.com/ChriStingo/Approximate-Nearest-Nei
  	cd SPTAG
 	docker build -t sptag .
 	```
-- Distributed-FAISS: clone the [repository](https://github.com/facebookresearch/distributed-faiss), enter the folder and then run `pip install -e .`
+- Distributed-Faiss: clone the [repository](https://github.com/facebookresearch/distributed-faiss), enter the folder and then run `pip install -e .`
 - Distributed-SPTAG: follow the instruction for *SPTAG*
 - Milvus: `pip install pymilvus` and then milvus can be install with [docker compose](https://milvus.io/docs/install_standalone-docker.md) or [Kubernetes](https://milvus.io/docs/install_standalone-helm.md) (Milvus Standalone for testing) or with [Helm + Kubernetes](https://milvus.io/docs/install_cluster-helm.md) (Milvus Cluster for production)
 
@@ -63,7 +63,7 @@ Before running the libraries customize the various config.py files
 
 ### **Execute the Distributed-ANN libraries**
 Before running the libraries customize the various config.py files
-- Distributed-FAISS: 
+- Distributed-Faiss: 
 	1. Customize the [DISCOVERY_CONFIG.txt]('https://github.com/ChriStingo/Distributed-computation-of-Approximate-Nearest-Neighbors/blob/main/Algorithms/Distributed-Faiss/DISCOVERY_CONFIG.txt') file.
   	2. Execute on each server `python init_server.py`
   	3. Execute on the client `python init_client.py`
