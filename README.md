@@ -14,7 +14,6 @@ This repository is intended to contain implementations of several libraries for 
 - [Distributed-FAISS](https://github.com/facebookresearch/distributed-faiss): this library has already been covered, but not its distributed version. This algorithm, although very efficient, does not add much new to the proposals previously analyzed that runs on a single machine. What makes this library special, however, is that it can be distributed on multiple machines in a very simple way.
 - [Distributed-SPTAG](https://github.com/microsoft/SPTAG): this library has already been covered, but not its distributed version. This algorithm, although very efficient, does not add much new to the proposals previously analyzed that runs on a single machine. What makes this library special, however, is that it can be distributed on multiple machines in a very simple way.
 - [Milvus](https://github.com/milvus-io/milvus): this library implements vector database that focuses on providing an efficient system and architecture for similarity searches and AI-powered applications. The need that Milvus tries to satisfy is to provide a complete system capable of operating on huge dynamic datasets, providing solutions that can also run on GPUs also in a distributed way. To do this Milvus was build on libraries that have already been explained as FAISS, making the necessary changes for its use case.
-- [Elasticsearch](https://github.com/elastic/elasticsearch): *work in progress*
 
 ## **How it is structured**
 The project has been structured in a precise way to ensure easy organization of files and to make navigation within it simple.
@@ -55,7 +54,6 @@ First go into [Algorithms](https://github.com/ChriStingo/Approximate-Nearest-Nei
 - Distributed-FAISS: clone the [repository](https://github.com/facebookresearch/distributed-faiss), enter the folder and then run `pip install -e .`
 - Distributed-SPTAG: follow the instruction for *SPTAG*
 - Milvus: `pip install pymilvus` and then milvus can be install with [docker compose](https://milvus.io/docs/install_standalone-docker.md) or [Kubernetes](https://milvus.io/docs/install_standalone-helm.md) (Milvus Standalone for testing) or with [Helm + Kubernetes](https://milvus.io/docs/install_cluster-helm.md) (Milvus Cluster for production)
-- Elasticsearch: *work in progress*
 
 ### **Execute the ANN libraries**
 
@@ -77,7 +75,6 @@ Before running the libraries customize the various config.py files
 - Milvus:
   	1. `python init.py`
 	2. `python search.py`
-- Elasticsearch: *work in progress*
 
 
 ---
