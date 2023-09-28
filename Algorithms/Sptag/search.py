@@ -25,7 +25,7 @@ def get_images_by_id(id_list):
 def main():
     chronometer = Chronometer()
     sptag_index = load_sptag_index()
-    sptag_result_id = query_sptag_index(sptag_index, np.array(MOCKED_QUERY_VECTOR_1).astype(np.float32), 5)
+    sptag_result_id = query_sptag_index(sptag_index, np.array(MOCKED_QUERY_VECTOR_1).astype(np.float32), 5, chronometer)
     sptag_result_images = get_images_by_id(sptag_result_id)
     print(sptag_result_id)
     print(''.join(sptag_result_images))
