@@ -9,6 +9,8 @@ for i in *;
 do 
     echo 'get filtered data from '$i;
     cut -f2- $i > ../Vectors/$i;
+    python ../formatDatasets.py ../Vectors/$i;
+    rm ../Vectors/$i
     echo 'get images links from '$i;
     sed 's/|/ /' $i | awk '{print $1}' >> ../Images/images.txt; 
     rm $i; 

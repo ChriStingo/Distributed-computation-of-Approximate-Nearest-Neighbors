@@ -28,18 +28,13 @@ def fill_index(faiss_index, chronometer: Chronometer):
     # Read datasets in ${PATH_DATASETS}, insert its vectors in the index
     idx = 0
     for dataset_name in sorted(listdir(PATH_DATASETS)):
-        with open(PATH_DATASETS + dataset_name, "r") as dataset:
-            matrix = []
-            datareader = csv.reader(dataset)
-            DEBUG(['Loading and training', dataset_name])
-            idx += 1
-            
-            for vector in datareader:
-                matrix.append(np.array(vector).astype(np.float32))
+        data = np.load(PATH_DATASETS + dataset_name)['arr_0']
+        DEBUG(['Loading and training', dataset_name])
+        idx += 1
 
-            chronometer.begin_time_window()
-            faiss_index.add_index_data(INDEX_ID, np.asmatrix(matrix).astype(np.float32), [i for i in range(len(matrix)*(idx-1), len(matrix)*idx)], train_async_if_triggered=False)
-            chronometer.end_time_window()                
+        chronometer.begin_time_window()
+        faiss_index.add_index_data(INDEX_ID, np.asmatrix(data).astype(np.float32), [i for i in range(len(data)*(idx-1), len(data)*idx)], train_async_if_triggered=False)
+        chronometer.end_time_window()                
     
 
 def build_and_save_faiss_index(faiss_index, chronometer: Chronometer):

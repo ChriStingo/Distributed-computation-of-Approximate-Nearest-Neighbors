@@ -33,7 +33,7 @@ def get_images_by_id(id_list):
 def main():
     chronometer = Chronometer()
     collection = load_milvus_index()
-    milvus_result_id = query_milvus_index(collection, [], 5)
+    milvus_result_id = query_milvus_index(collection, [], 100)
     collection.release()
     milvus_result_images = get_images_by_id(milvus_result_id)
     print(milvus_result_id)

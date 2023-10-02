@@ -26,7 +26,7 @@ def get_images_by_id(id_list):
 def main():
     chronometer = Chronometer()
     annoy_index = load_annoy_index()
-    annoy_result_id = query_annoy_index(annoy_index, [], 5, chronometer)
+    annoy_result_id = query_annoy_index(annoy_index, [], 100, chronometer)
     annoy_result_images = get_images_by_id(annoy_result_id)
     print(annoy_result_id)
     print(''.join(annoy_result_images))

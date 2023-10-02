@@ -15,12 +15,13 @@ def fill_index(knn_index, chronometer: Chronometer):
     # Read each dataset in ${PATH_DATASETS} and insert its vectors in the index
     matrix = []
     for dataset_name in sorted(listdir(PATH_DATASETS)):
-        with open(PATH_DATASETS + dataset_name, "r") as dataset:
-            datareader = csv.reader(dataset)
-            DEBUG(['Loading', dataset_name])
+        data = np.load(PATH_DATASETS + dataset_name)['arr_0']
+        DEBUG(['Loading', dataset_name])
             
-            for vector in datareader:
-                matrix.append(np.array(vector, dtype=np.longdouble))
+        if len(matrix) == 0:
+            matrix = data
+        else: 
+            matrix = np.concatenate((matrix, data))
 
     chronometer.begin_time_window()
     knn_index.fit(matrix, np.arange(0, len(matrix)))
@@ -31,7 +32,7 @@ def build_and_save_knn_index(knn_index):
 
 def main():
     chronometer = Chronometer()
-    knn_index = create_knn_index(25)
+    knn_index = create_knn_index(100)
     fill_index(knn_index, chronometer)
     build_and_save_knn_index(knn_index)
     chronometer.get_total_time()

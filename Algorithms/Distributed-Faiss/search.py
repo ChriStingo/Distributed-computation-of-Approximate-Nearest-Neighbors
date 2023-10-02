@@ -39,7 +39,7 @@ def get_images_by_id(id_list):
 def main():
     chronometer = Chronometer()
     faiss_index = load_faiss_index()
-    faiss_result_id = query_faiss_index(faiss_index, np.array(MOCKED_QUERY_VECTOR_1).astype(np.float32), 5, chronometer)
+    faiss_result_id = query_faiss_index(faiss_index, np.array(MOCKED_QUERY_VECTOR_1).astype(np.float32), 100, chronometer)
     faiss_result_images = get_images_by_id(faiss_result_id)
     print(faiss_result_id)
     print(''.join(faiss_result_images))
