@@ -14,7 +14,7 @@ def query_knn_index(knn_index, query_vector, chronometer: Chronometer):
     chronometer.begin_time_window()
     distances, indices = knn_index.kneighbors(query_vector)
     chronometer.end_time_window()
-    return indices[0]
+    return distances[0], indices[0]
 
 def get_images_by_id(id_list):
     images = open(PATH_IMAGES, 'r')
@@ -24,10 +24,10 @@ def get_images_by_id(id_list):
 def main():
     chronometer = Chronometer()
     knn_index = load_knn_index()
-    knn_result_id = query_knn_index(knn_index, np.asarray([MOCKED_QUERY_VECTOR_1]), chronometer)
+    knn_result_distance, knn_result_id = query_knn_index(knn_index, np.asarray([MOCKED_QUERY_VECTOR_1]), chronometer)
     knn_result_images = get_images_by_id(knn_result_id)
-    print(knn_result_id)
-    print(''.join(knn_result_images))
+    for index in range(len(knn_result_images)):
+        print(knn_result_distance[index], '-', knn_result_images[index], end='')
     chronometer.get_total_time()
 
 if __name__ == "__main__":
