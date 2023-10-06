@@ -1,7 +1,7 @@
 import joblib
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
-from mocks import MOCKED_QUERY_VECTOR_1
+from mocks import MOCKED_QUERY_VECTOR_1 as MOCKED_QUERY_VECTOR
 from chronometer import Chronometer
 
 from config import PATH_IMAGES, PATH_INDEX
@@ -24,7 +24,7 @@ def get_images_by_id(id_list):
 def main():
     chronometer = Chronometer()
     knn_index = load_knn_index()
-    knn_result_distance, knn_result_id = query_knn_index(knn_index, np.asarray([MOCKED_QUERY_VECTOR_1]), chronometer)
+    knn_result_distance, knn_result_id = query_knn_index(knn_index, np.asarray([MOCKED_QUERY_VECTOR]), chronometer)
     knn_result_images = get_images_by_id(knn_result_id)
     for index in range(len(knn_result_images)):
         print(knn_result_distance[index], '-', knn_result_images[index], end='')

@@ -2,7 +2,7 @@ from distributed_faiss.client import IndexClient
 from distributed_faiss.index_cfg import IndexCfg
 import numpy as np
 import time
-from mocks import MOCKED_QUERY_VECTOR_1
+from mocks import MOCKED_QUERY_VECTOR_1 as MOCKED_QUERY_VECTOR
 from chronometer import Chronometer
 from config import D, M, INDEX_TYPE, INDEX_FACTORY, DISTANCE, INDEX_ID, NBITS, PATH_IMAGES, ADDR_IP_AGGREGATOR, ADDR_PORT_AGGREGATOR, PATH_INDEX 
 
@@ -39,7 +39,7 @@ def get_images_by_id(id_list):
 def main():
     chronometer = Chronometer()
     faiss_index = load_faiss_index()
-    faiss_result_id = query_faiss_index(faiss_index, np.array(MOCKED_QUERY_VECTOR_1).astype(np.float32), 100, chronometer)
+    faiss_result_id = query_faiss_index(faiss_index, np.array(MOCKED_QUERY_VECTOR).astype(np.float32), 100, chronometer)
     faiss_result_images = get_images_by_id(faiss_result_id)
     print(faiss_result_id)
     print(''.join(faiss_result_images))
