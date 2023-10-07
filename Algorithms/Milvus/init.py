@@ -46,9 +46,9 @@ def fill_index(collection, chronometer: Chronometer):
     # Read each dataset in ${PATH_DATASETS} and insert its vectors in the index
     idx = 0
     for dataset_name in sorted(listdir(PATH_DATASETS)):
+        DEBUG(['Loading and training', dataset_name])
         data = np.load(PATH_DATASETS + dataset_name)['arr_0']
         matrix = []
-        DEBUG(['Loading and training', dataset_name])
         idx += 1
 
         for vector in data:

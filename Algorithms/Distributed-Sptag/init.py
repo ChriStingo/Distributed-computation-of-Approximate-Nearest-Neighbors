@@ -16,8 +16,8 @@ def train_index(sptag_index, chronometer: Chronometer):
     # Read ${DATASETS_USED_TO_TRAIN} datasets in ${PATH_DATASETS}, insert its vectors in the index and train it
     matrix = []
     for dataset_name in sorted(listdir(PATH_DATASETS))[:DATASETS_USED_TO_TRAIN]:
-        data = np.load(PATH_DATASETS + dataset_name)['arr_0']
         DEBUG(['Loading and training', dataset_name])
+        data = np.load(PATH_DATASETS + dataset_name)['arr_0']
 
         if len(matrix) == 0:
             matrix = data
@@ -33,8 +33,8 @@ def train_index(sptag_index, chronometer: Chronometer):
 def fill_index(sptag_index, chronometer: Chronometer):
     # Read the remaining dataset in ${PATH_DATASETS} and insert its vectors in the index
     for dataset_name in sorted(listdir(PATH_DATASETS))[DATASETS_USED_TO_TRAIN:]:
-        data = np.load(PATH_DATASETS + dataset_name)['arr_0']
         DEBUG(['Loading', dataset_name])
+        data = np.load(PATH_DATASETS + dataset_name)['arr_0']
                 
         chronometer.begin_time_window()
         sptag_index.Add(np.asmatrix(data).astype(np.float32), len(data), False)

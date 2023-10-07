@@ -13,8 +13,8 @@ def fill_index(annoy_index, chronometer: Chronometer):
     # Read each dataset in ${PATH_DATASETS} and insert its vectors in the index
     index = 0
     for dataset_name in sorted(listdir(PATH_DATASETS)):
-        data = np.load(PATH_DATASETS + dataset_name)['arr_0']
         DEBUG(['Loading', dataset_name])
+        data = np.load(PATH_DATASETS + dataset_name)['arr_0']
   
         for vector in data:
             chronometer.begin_time_window()

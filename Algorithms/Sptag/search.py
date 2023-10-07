@@ -9,9 +9,6 @@ def load_sptag_index():
     return SPTAG.AnnIndex.Load(PATH_INDEX)
 
 def query_sptag_index(sptag_index, query_vector, nearest_neighbors, chronometer: Chronometer):
-    # [0]: nearest k vector ids
-    # [1]: nearest k vector distances
-    # [2]: nearest k vector metadatas
     chronometer.begin_time_window()
     tmp = sptag_index.Search(query_vector, nearest_neighbors)
     chronometer.end_time_window()

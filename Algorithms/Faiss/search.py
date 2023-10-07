@@ -8,7 +8,7 @@ def load_faiss_index():
     return faiss.read_index(PATH_INDEX)
 
 def query_faiss_index(faiss_index, query_vector, nearest_neighbors, chronometer: Chronometer):
-    # MOCKED_QUERY_VECTOR already normalized with faiss.normalize_L2
+    # Function for tuned parameter: faiss.ParameterSpace().set_index_parameter(faiss_index, "nprobe", 128)
     chronometer.begin_time_window()
     d, i = faiss_index.search(np.asmatrix(query_vector).astype(np.float32), nearest_neighbors)
     chronometer.end_time_window()

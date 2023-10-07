@@ -4,7 +4,7 @@ import numpy as np
 import time
 from mocks import MOCKED_QUERY_VECTOR_1 as MOCKED_QUERY_VECTOR
 from chronometer import Chronometer
-from config import D, M, INDEX_TYPE, INDEX_FACTORY, DISTANCE, INDEX_ID, NBITS, PATH_IMAGES, ADDR_IP_AGGREGATOR, ADDR_PORT_AGGREGATOR, PATH_INDEX 
+from config import D, M, INDEX_TYPE, INDEX_FACTORY, DISTANCE, INDEX_ID, PATH_IMAGES, ADDR_IP_AGGREGATOR, ADDR_PORT_AGGREGATOR, PATH_INDEX 
 
 def load_faiss_index():
     faiss_client = IndexClient("DISCOVERY_CONFIG.txt")
@@ -15,7 +15,7 @@ def load_faiss_index():
         train_data_ratio=1.0,
         centroids=M,
         metric=DISTANCE,
-        nprobe=NBITS,
+        nprobe=64,
         index_storage_dir=PATH_INDEX,
         infer_centroids=True
     )
@@ -23,9 +23,6 @@ def load_faiss_index():
     return faiss_client
 
 def query_faiss_index(faiss_index, query_vector, nearest_neighbors, chronometer: Chronometer):
-    # [0]: nearest k vector ids
-    # [1]: nearest k vector distances
-    # [2]: nearest k vector metadatas
     chronometer.begin_time_window()
     scores, meta = faiss_index.search(query_vector, nearest_neighbors, INDEX_ID, return_embeddings=False)
     chronometer.end_time_window()

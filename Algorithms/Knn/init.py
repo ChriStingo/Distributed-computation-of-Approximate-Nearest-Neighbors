@@ -15,8 +15,8 @@ def fill_index(knn_index, chronometer: Chronometer):
     # Read each dataset in ${PATH_DATASETS} and insert its vectors in the index
     matrix = []
     for dataset_name in sorted(listdir(PATH_DATASETS)):
-        data = np.load(PATH_DATASETS + dataset_name)['arr_0']
         DEBUG(['Loading', dataset_name])
+        data = np.load(PATH_DATASETS + dataset_name)['arr_0']
             
         if len(matrix) == 0:
             matrix = data

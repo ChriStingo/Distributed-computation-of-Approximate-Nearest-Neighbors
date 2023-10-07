@@ -28,8 +28,8 @@ def fill_index(faiss_index, chronometer: Chronometer):
     # Read datasets in ${PATH_DATASETS}, insert its vectors in the index
     idx = 0
     for dataset_name in sorted(listdir(PATH_DATASETS)):
-        data = np.load(PATH_DATASETS + dataset_name)['arr_0']
         DEBUG(['Loading and training', dataset_name])
+        data = np.load(PATH_DATASETS + dataset_name)['arr_0']
         idx += 1
 
         chronometer.begin_time_window()

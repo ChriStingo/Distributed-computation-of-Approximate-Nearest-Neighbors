@@ -12,9 +12,8 @@ def load_annoy_index():
     return annoy_index
 
 def query_annoy_index(annoy_index, query_vector, nearest_neighbors, chronometer: Chronometer):
-    # VECTOR: print(annoy_index.get_nns_by_vector(query_vector, nearest_neighbors))
     chronometer.begin_time_window()
-    result = annoy_index.get_nns_by_vector(MOCKED_QUERY_VECTOR, nearest_neighbors)
+    result = annoy_index.get_nns_by_vector(query_vector, nearest_neighbors, 100) # Tuned parameter: search_k=number
     chronometer.end_time_window()
     return result
 
@@ -26,7 +25,7 @@ def get_images_by_id(id_list):
 def main():
     chronometer = Chronometer()
     annoy_index = load_annoy_index()
-    annoy_result_id = query_annoy_index(annoy_index, [], 100, chronometer)
+    annoy_result_id = query_annoy_index(annoy_index, MOCKED_QUERY_VECTOR, 100, chronometer)
     annoy_result_images = get_images_by_id(annoy_result_id)
     print(annoy_result_id)
     print(''.join(annoy_result_images))
