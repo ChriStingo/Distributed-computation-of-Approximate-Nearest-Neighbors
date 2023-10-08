@@ -7,7 +7,7 @@ PATH_IMAGES = '../../Datasets/Images/images.txt'
 ''' ### INDEX CONFIG ### '''
 DATASETS_USED_TO_TRAIN = 16         # Number of datasets used to train
 D = 2048                           # d-sized vectors
-FACTORY_STRING = "IVF1024,PQ1024x4fsr"
+FACTORY_STRING = "IVF16,PQ2048x4fs,RFlat"
 # "HNSW64"
 # "IMI2x1,PQ2048x4fs,RFlat"
 # "IVF3000,PQ2048x4fs,RFlat"

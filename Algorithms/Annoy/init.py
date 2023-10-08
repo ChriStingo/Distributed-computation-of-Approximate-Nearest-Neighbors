@@ -13,14 +13,15 @@ def fill_index(annoy_index, chronometer: Chronometer):
     # Read each dataset in ${PATH_DATASETS} and insert its vectors in the index
     index = 0
     for dataset_name in sorted(listdir(PATH_DATASETS)):
-        DEBUG(['Loading', dataset_name])
-        data = np.load(PATH_DATASETS + dataset_name)['arr_0']
-  
-        for vector in data:
-            chronometer.begin_time_window()
-            annoy_index.add_item(index, np.array(vector).astype(dtype=np.longdouble))
-            chronometer.end_time_window()
-            index += 1
+        with np.load(PATH_DATASETS + dataset_name) as fp:
+            DEBUG(['Loading', dataset_name])
+            data = fp['arr_0']
+    
+            for vector in data:
+                chronometer.begin_time_window()
+                annoy_index.add_item(index, np.array(vector).astype(dtype=np.longdouble))
+                chronometer.end_time_window()
+                index += 1
 
 def build_and_save_annoy_index(annoy_index, chronometer: Chronometer):
     chronometer.begin_time_window()

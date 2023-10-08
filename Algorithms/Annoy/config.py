@@ -6,7 +6,7 @@ PATH_IMAGES = '../../Datasets/Images/images.txt'
 
 ''' ### INDEX CONFIG ### '''
 DISTANCE = 'angular'  # Metric: "angular", "euclidean", "manhattan", "hamming", or "dot"
-NUMBER_OF_TREES = 8 # Is provided during build time and affects the build time and the index size. A larger value will give more accurate results, but larger indexes
+NUMBER_OF_TREES = 16 # Is provided during build time and affects the build time and the index size. A larger value will give more accurate results, but larger indexes
 
 
 ''' ### UTILS ### '''

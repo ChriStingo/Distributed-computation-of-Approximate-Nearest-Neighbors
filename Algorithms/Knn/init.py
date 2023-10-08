@@ -15,13 +15,14 @@ def fill_index(knn_index, chronometer: Chronometer):
     # Read each dataset in ${PATH_DATASETS} and insert its vectors in the index
     matrix = []
     for dataset_name in sorted(listdir(PATH_DATASETS)):
-        DEBUG(['Loading', dataset_name])
-        data = np.load(PATH_DATASETS + dataset_name)['arr_0']
-            
-        if len(matrix) == 0:
-            matrix = data
-        else: 
-            matrix = np.concatenate((matrix, data))
+        with np.load(PATH_DATASETS + dataset_name) as fp:
+            DEBUG(['Loading', dataset_name])
+            data = fp['arr_0']
+                
+            if len(matrix) == 0:
+                matrix = data
+            else: 
+                matrix = np.concatenate((matrix, data))
 
     chronometer.begin_time_window()
     knn_index.fit(matrix, np.arange(0, len(matrix)))

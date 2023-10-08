@@ -46,17 +46,18 @@ def fill_index(collection, chronometer: Chronometer):
     # Read each dataset in ${PATH_DATASETS} and insert its vectors in the index
     idx = 0
     for dataset_name in sorted(listdir(PATH_DATASETS)):
-        DEBUG(['Loading and training', dataset_name])
-        data = np.load(PATH_DATASETS + dataset_name)['arr_0']
-        matrix = []
-        idx += 1
+        with np.load(PATH_DATASETS + dataset_name) as fp:
+            DEBUG(['Loading and training', dataset_name])
+            data = fp['arr_0']
+            matrix = []
+            idx += 1
 
-        for vector in data:
-            matrix.append(list(map(float, vector)))
-    
-        chronometer.begin_time_window()
-        collection.insert([[i for i in range(len(matrix)*(idx-1), len(matrix)*idx)], matrix])
-        chronometer.end_time_window()          
+            for vector in data:
+                matrix.append(list(map(float, vector)))
+        
+            chronometer.begin_time_window()
+            collection.insert([[i for i in range(len(matrix)*(idx-1), len(matrix)*idx)], matrix])
+            chronometer.end_time_window()          
 
 def main():
     chronometer = Chronometer()
