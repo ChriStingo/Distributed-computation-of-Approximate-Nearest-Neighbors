@@ -8,12 +8,12 @@ PATH_IMAGES = '../../Datasets/Images/images.txt'
 D = 2048                    # d-sized vectors
 NLIST = 100                 # 100 coarse divisions of data / number of Voronoi cells
 M = 256			            # number of subquantizers / subvectors
-NBITS = 4		            # number of bits needed to represent codes learnt for each subvector group
+NPROBE = 64
 DISTANCE = "l2"
 INDEX_ID = "images"
 INDEX_ALREADY_CREATED = False
-INDEX_TYPE = 'hnswsq'
-INDEX_FACTORY = None
+INDEX_TYPE = None
+INDEX_FACTORY = "IVF128,PQ2048x4fs,RFlat"
 
 
 ''' ### UTILS ### '''

@@ -5,19 +5,17 @@ from os import listdir
 from distributed_faiss.client import IndexClient
 from distributed_faiss.index_state import IndexState
 from distributed_faiss.index_cfg import IndexCfg
-from config import DEBUG, D, INDEX_FACTORY, INDEX_TYPE, M, DISTANCE, NBITS, PATH_DATASETS, INDEX_ID, PATH_INDEX
+from config import DEBUG, D, INDEX_FACTORY, INDEX_TYPE, M, DISTANCE, NPROBE, PATH_DATASETS, INDEX_ID, PATH_INDEX
 from chronometer import Chronometer
 
 def create_faiss_index():
     faiss_index = IndexClient("DISCOVERY_CONFIG.txt")
     idx_cfg = IndexCfg(
-        index_builder_type=INDEX_TYPE,
         faiss_factory=INDEX_FACTORY, 
         dim=D,
         train_data_ratio=1.0,
-        centroids=M,
         metric=DISTANCE,
-        nprobe=NBITS,
+        nprobe=NPROBE,
         index_storage_dir=PATH_INDEX,
         infer_centroids=True
     )
