@@ -1,19 +1,15 @@
 ''' ### PATHS ### '''
 PATH_DATASETS = '../../Datasets/Vectors/' # Path of datasets folder
-PATH_INDEX = '../../Datasets/Indexes/' # Index folder
+PATH_INDEX = '../../Datasets/Indexes/dfaiss' # Index folder
 PATH_IMAGES = '../../Datasets/Images/images.txt'
 
 
 ''' ### INDEX CONFIG ### '''
-D = 2048                    # d-sized vectors
-NLIST = 100                 # 100 coarse divisions of data / number of Voronoi cells
-M = 256			            # number of subquantizers / subvectors
-NPROBE = 64
 DISTANCE = "l2"
 INDEX_ID = "images"
 INDEX_ALREADY_CREATED = False
 INDEX_TYPE = None
-INDEX_FACTORY = "IVF128,PQ2048x4fs,RFlat"
+INDEX_FACTORY = "IMI2x2,PQ2048x4fs,RFlat"
 
 
 ''' ### UTILS ### '''

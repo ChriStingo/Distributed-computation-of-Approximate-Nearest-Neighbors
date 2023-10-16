@@ -5,19 +5,18 @@ from os import listdir
 from distributed_faiss.client import IndexClient
 from distributed_faiss.index_state import IndexState
 from distributed_faiss.index_cfg import IndexCfg
-from config import DEBUG, D, INDEX_FACTORY, INDEX_TYPE, M, DISTANCE, NPROBE, PATH_DATASETS, INDEX_ID, PATH_INDEX
+import faiss
+from config import DEBUG, INDEX_FACTORY, DISTANCE, PATH_DATASETS, INDEX_ID, PATH_INDEX, get_dataset_columns
 from chronometer import Chronometer
 
 def create_faiss_index():
     faiss_index = IndexClient("DISCOVERY_CONFIG.txt")
     idx_cfg = IndexCfg(
         faiss_factory=INDEX_FACTORY, 
-        dim=D,
+        dim=get_dataset_columns(),
         train_data_ratio=1.0,
         metric=DISTANCE,
-        nprobe=NPROBE,
         index_storage_dir=PATH_INDEX,
-        infer_centroids=True
     )
     faiss_index.create_index(INDEX_ID, idx_cfg)
     return faiss_index
@@ -31,8 +30,11 @@ def fill_index(faiss_index, chronometer: Chronometer):
             data = fp['arr_0']
             idx += 1
 
+            norm_matrix = np.asmatrix(data).astype(np.float32)
+            faiss.normalize_L2(norm_matrix)
+
             chronometer.begin_time_window()
-            faiss_index.add_index_data(INDEX_ID, np.asmatrix(data).astype(np.float32), [i for i in range(len(data)*(idx-1), len(data)*idx)], train_async_if_triggered=False)
+            faiss_index.add_index_data(INDEX_ID, norm_matrix, [i for i in range(len(norm_matrix)*(idx-1), len(norm_matrix)*idx)], train_async_if_triggered=False)
             chronometer.end_time_window()                
     
 
