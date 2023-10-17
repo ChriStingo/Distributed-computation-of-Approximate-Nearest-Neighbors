@@ -4,14 +4,14 @@ import numpy as np
 import faiss
 from mocks import MOCKED_QUERY_VECTOR_1 as MOCKED_QUERY_VECTOR
 from chronometer import Chronometer
-from config import INDEX_FACTORY, DISTANCE, INDEX_ID, PATH_IMAGES, PATH_INDEX, get_dataset_columns 
+from config import INDEX_FACTORY, DISTANCE, INDEX_ID, PATH_IMAGES, PATH_INDEX, get_dataset_columns , TRAIN_RATIO
 
 def load_faiss_index():
     faiss_client = IndexClient("DISCOVERY_CONFIG.txt")
     idx_cfg = IndexCfg(
         faiss_factory=INDEX_FACTORY, 
         dim=get_dataset_columns(),
-        train_data_ratio=1.0,
+        train_ratio=TRAIN_RATIO,
         metric=DISTANCE,
         index_storage_dir=PATH_INDEX,
     )

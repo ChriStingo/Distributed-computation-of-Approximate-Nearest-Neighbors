@@ -7,6 +7,7 @@ PATH_IMAGES = '../../Datasets/Images/images.txt'
 ''' ### INDEX CONFIG ### '''
 DISTANCE = "l2"
 INDEX_ID = "images"
+TRAIN_RATIO = 1.0
 INDEX_ALREADY_CREATED = False
 INDEX_TYPE = None
 INDEX_FACTORY = "IMI2x2,PQ2048x4fs,RFlat"

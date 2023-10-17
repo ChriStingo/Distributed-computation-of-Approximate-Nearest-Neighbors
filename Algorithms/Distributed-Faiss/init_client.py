@@ -6,7 +6,7 @@ from distributed_faiss.client import IndexClient
 from distributed_faiss.index_state import IndexState
 from distributed_faiss.index_cfg import IndexCfg
 import faiss
-from config import DEBUG, INDEX_FACTORY, DISTANCE, PATH_DATASETS, INDEX_ID, PATH_INDEX, get_dataset_columns
+from config import DEBUG, INDEX_FACTORY, DISTANCE, PATH_DATASETS, INDEX_ID, PATH_INDEX, get_dataset_columns, TRAIN_RATIO
 from chronometer import Chronometer
 
 def create_faiss_index():
@@ -14,7 +14,7 @@ def create_faiss_index():
     idx_cfg = IndexCfg(
         faiss_factory=INDEX_FACTORY, 
         dim=get_dataset_columns(),
-        train_data_ratio=1.0,
+        train_ratio=TRAIN_RATIO,
         metric=DISTANCE,
         index_storage_dir=PATH_INDEX,
     )
