@@ -11,8 +11,9 @@ ADDR_PORT_AGGREGATOR = '8100'
 
 ''' ### INDEX CONFIG ### '''
 DISTANCE = 'Cosine'
-NUMBER_OF_THREADS = '32'
+NUMBER_OF_THREADS = '8'
 DATASETS_USED_TO_TRAIN = 1
+START_METADATA_OFFSET = 30122 # count all the vectors inserted in the previus indexes, needed for correct ids in distributed version
 
 
 ''' ### UTILS ### '''
