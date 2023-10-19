@@ -70,7 +70,7 @@ Before running the libraries customize the various config.py files
   	4. Execute on the client `python search.py`
 - Distributed-SPTAG:
 	1. Go to the servers hosting the previously created index. In the Release folder of the library, import and customize the [service.ini](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Algorithms/Distributed-Sptag/service.ini "service.ini") file and run the command `./server -m socket -c service.ini`
-	2. Go to the machine you identify as the aggregator. In the Release folder of the library, import and customize the [Aggregator.ini](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Algorithms/Distributed-Sptag/Aggregator.ini "Aggregator.ini") file and run the command `./Aggregator`
+	2. Go to the machine you identify as the aggregator. In the Release folder of the library, import and customize the [Aggregator.ini](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Algorithms/Distributed-Sptag/Aggregator.ini "Aggregator.ini") file and run the command `./aggregator`
 	3. Go to the client, customize the config.py file, and execute `python search.py`
 - Milvus:
   	1. `python init.py`
