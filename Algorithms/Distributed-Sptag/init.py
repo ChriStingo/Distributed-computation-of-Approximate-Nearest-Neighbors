@@ -11,7 +11,7 @@ def generate_metadata(offset, list_len):
     for i in range(offset, offset+list_len):
         metadata += str(i) + '\n'
     offset += list_len
-    return metadata
+    return metadata.encode()
 
 def create_sptag_index():
     sptag_index = SPTAG.AnnIndex('BKT', 'Float', get_dataset_columns())
