@@ -2,6 +2,7 @@ from mocks import MOCKED_QUERY_VECTOR_1 as MOCKED_QUERY_VECTOR
 import SPTAG
 import SPTAGClient
 import numpy as np
+import heapq
 import time
 from chronometer import Chronometer
 from config import PATH_IMAGES, ADDR_IP_AGGREGATOR, ADDR_PORT_AGGREGATOR 
@@ -28,22 +29,28 @@ def get_images_by_id(distances, metadata, chronometer: Chronometer):
     images = open(PATH_IMAGES, 'r')
     lines = images.readlines()
 
-    chronometer.begin_time_window()
-    metadata = [x for _, x in sorted(zip(distances, metadata))]
-    distances = [x for x, _ in sorted(zip(distances, metadata))]
-    chronometer.end_time_window()
-
     tmpDistances = []
-    tmpLinks = []
+    tmpMetadata = []
     for index, i in enumerate(metadata):
         try:
-            tmpLinks.append(lines[int(i)])
+            tmpMetadata.append(int(i.decode()))
             tmpDistances.append(distances[index])
         except:
             print("Bad/Corrupted value", i)
             continue
+
+    chronometer.begin_time_window()
+    zipped_list = zip(tmpDistances, tmpMetadata)
+    # Counting sort
+    zipped_list = heapq.nlargest(100, zipped_list, key=lambda x: x[0])
+    print(zipped_list)
+
+    tmpLinks = []
+    for _, meta in zipped_list:
+        tmpLinks.append(lines[meta])
+    chronometer.end_time_window()
     
-    return tmpLinks[:100]
+    return tmpLinks
 
 def main():
     chronometer = Chronometer()
