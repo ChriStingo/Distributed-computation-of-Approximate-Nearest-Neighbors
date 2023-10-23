@@ -28,26 +28,22 @@ def get_images_by_id(distances, metadata, chronometer: Chronometer):
     images = open(PATH_IMAGES, 'r')
     lines = images.readlines()
 
+    chronometer.begin_time_window()
+    metadata = [x for _, x in sorted(zip(distances, metadata))]
+    distances = [x for x, _ in sorted(zip(distances, metadata))]
+    chronometer.end_time_window()
+
     tmpDistances = []
-    tmpMetadata = []
+    tmpLinks = []
     for index, i in enumerate(metadata):
         try:
-            tmpMetadata.append(int(i.decode()))
+            tmpLinks.append(lines[int(i)])
             tmpDistances.append(distances[index])
         except:
             print("Bad/Corrupted value", i)
             continue
-
-    chronometer.begin_time_window()
-    # Counting sort
-    tmpLinks = []
-    while len(tmpLinks) < 100:
-        index_max = np.argmax(tmpDistances)
-        print(index_max)
-        tmpLinks.append(lines[tmpMetadata[index_max]])
-    chronometer.end_time_window()
     
-    return tmpLinks
+    return tmpLinks[:100]
 
 def main():
     chronometer = Chronometer()
