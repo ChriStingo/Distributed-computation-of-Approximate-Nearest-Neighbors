@@ -40,10 +40,7 @@ def get_images_by_id(distances, metadata, chronometer: Chronometer):
             continue
 
     chronometer.begin_time_window()
-    zipped_list = zip(tmpDistances, tmpMetadata)
-    # Counting sort
-    zipped_list = heapq.nlargest(100, zipped_list, key=lambda x: x[0])
-    print(zipped_list)
+    zipped_list = heapq.nsmallest(100, zip(tmpDistances, tmpMetadata), key=lambda x: x[0]) # Counting sort
 
     tmpLinks = []
     for _, meta in zipped_list:
