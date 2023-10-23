@@ -37,13 +37,13 @@ def get_images_by_id(distances, metadata, chronometer: Chronometer):
         except:
             print("Bad/Corrupted value", i)
             continue
-    print(tmpDistances)
-    print(tmpMetadata)
+
     chronometer.begin_time_window()
     # Counting sort
     tmpLinks = []
     while len(tmpLinks) < 100:
         index_max = np.argmax(tmpDistances)
+        print(index_max)
         tmpLinks.append(lines[tmpMetadata[index_max]])
     chronometer.end_time_window()
     
