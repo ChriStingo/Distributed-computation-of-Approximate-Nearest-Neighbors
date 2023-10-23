@@ -21,7 +21,7 @@ for dataset_name in sorted(listdir(PATH_DATASETS))[:1]:
         
         dist.extend(cosine_similarity([MOCKED_QUERY_VECTOR], data)[0])
 
-zipped_list = heapq.nlargest(5, zip(dist, [i for i in range(len(dist))]), key=lambda x: x[0]) # Partial sort
+zipped_list = heapq.nlargest(100, zip(dist, [i for i in range(len(dist))]), key=lambda x: x[0]) # Partial sort
 
 images = open(PATH_IMAGES, 'r')
 lines = images.readlines()
