@@ -14,7 +14,7 @@ def DEBUG(elements):
 
 
 dist = []
-for dataset_name in sorted(listdir(PATH_DATASETS))[:1]:
+for dataset_name in sorted(listdir(PATH_DATASETS)):
     with np.load(PATH_DATASETS + dataset_name) as fp:
         DEBUG(['Loading', dataset_name])
         data = fp['arr_0']
@@ -29,5 +29,5 @@ tmpLinks = []
 for _, meta in zipped_list:
     tmpLinks.append(lines[meta])
 
-for el in tmpLinks:
-    print(el, end='')
+for index, el in enumerate(tmpLinks):
+    print(1-zipped_list[index][0], "-", el, end='')
