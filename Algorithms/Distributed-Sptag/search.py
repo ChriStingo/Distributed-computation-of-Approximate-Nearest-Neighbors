@@ -37,7 +37,8 @@ def get_images_by_id(distances, metadata, chronometer: Chronometer):
         except:
             print("Bad/Corrupted value", i)
             continue
-
+    print(tmpDistances)
+    print(tmpMetadata)
     chronometer.begin_time_window()
     # Counting sort
     tmpLinks = []
