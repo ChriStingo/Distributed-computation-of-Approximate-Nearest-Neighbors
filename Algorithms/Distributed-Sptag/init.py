@@ -44,7 +44,7 @@ def fill_index(sptag_index, chronometer: Chronometer, offset):
     # Read the remaining dataset in ${PATH_DATASETS} and insert its vectors in the index
     for dataset_name in sorted(listdir(PATH_DATASETS))[DATASETS_USED_TO_TRAIN:]:
         with np.load(PATH_DATASETS + dataset_name) as fp:
-            DEBUG(['Loading and training', dataset_name])
+            DEBUG(['Loading', dataset_name])
             data = fp['arr_0']
             
             chronometer.begin_time_window()
