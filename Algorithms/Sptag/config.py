@@ -8,6 +8,7 @@ PATH_IMAGES = '../../Datasets/Images/images.txt'
 DISTANCE = 'Cosine'
 NUMBER_OF_THREADS = '32'
 DATASETS_USED_TO_TRAIN = 16
+SPANN = False
 
 
 ''' ### UTILS ### '''
