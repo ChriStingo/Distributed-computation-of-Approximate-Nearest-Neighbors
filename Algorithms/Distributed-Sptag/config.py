@@ -1,6 +1,6 @@
 ''' ### PATHS ### '''
 PATH_DATASETS = '../../Datasets/Vectors/' # Path of datasets folder
-PATH_INDEX = '../../Datasets/Indexes/sptagIndex.ann' # Index name
+PATH_INDEX = '../../Datasets/Indexes/sptagIndex4.ann' # Index name
 PATH_IMAGES = '../../Datasets/Images/images.txt'
 
 
@@ -13,7 +13,8 @@ ADDR_PORT_AGGREGATOR = '8100'
 DISTANCE = 'Cosine'
 NUMBER_OF_THREADS = '8'
 DATASETS_USED_TO_TRAIN = 1
-START_METADATA_OFFSET = 30122 # count all the vectors inserted in the previus indexes, needed for correct ids in distributed version
+START_METADATA_OFFSET = 0 # count all the vectors inserted in the previus indexes, needed for correct ids in distributed version
+SPANN = False
 
 
 ''' ### UTILS ### '''
