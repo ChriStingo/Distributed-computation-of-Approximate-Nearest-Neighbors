@@ -14,6 +14,7 @@ def load_sptag_index():
         time.sleep(1)
     print("Index connected")
     index.SetTimeoutMilliseconds(18000)
+    index.SetSearchParam("MaxCheck", '32768')
     return index
 
 def query_sptag_index(sptag_index, query_vector, nearest_neighbors, chronometer: Chronometer):
@@ -40,7 +41,7 @@ def get_images_by_id(distances, metadata, chronometer: Chronometer):
             continue
 
     chronometer.begin_time_window()
-    zipped_list = heapq.nsmallest(100, zip(tmpDistances, tmpMetadata), key=lambda x: x[0]) # Counting sort
+    zipped_list = heapq.nsmallest(100, zip(tmpDistances, tmpMetadata), key=lambda x: x[0]) # Partial sort
 
     tmpLinks = []
     for _, meta in zipped_list:
