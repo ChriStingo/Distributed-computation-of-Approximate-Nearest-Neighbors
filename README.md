@@ -51,7 +51,7 @@ First go into [Algorithms](https://github.com/ChriStingo/Approximate-Nearest-Nei
  	cd SPTAG
 	docker build -t sptag .
 	```
-- Distributed-Faiss: clone the [repository](https://github.com/facebookresearch/distributed-faiss), enter the folder and then run `pip install -e .`
+- Distributed-Faiss: clone the [repository](https://github.com/facebookresearch/distributed-faiss) (if you want to use my PR for adding precision to search phase clone this [repository]([https://github.com/facebookresearch/distributed-faiss](https://github.com/ChriStingo/distributed-faiss/tree/set-index-parameter))), enter the folder and then run `pip install -e .`
 - Distributed-SPTAG: follow the instruction for *SPTAG*
 - Milvus: `pip install pymilvus` and then milvus can be install with [docker compose](https://milvus.io/docs/install_standalone-docker.md) or [Kubernetes](https://milvus.io/docs/install_standalone-helm.md) (Milvus Standalone for testing) or with [Helm + Kubernetes](https://milvus.io/docs/install_cluster-helm.md) (Milvus Cluster for production)
 
@@ -69,6 +69,7 @@ Before running the libraries customize the various config.py files
   	3. Execute on the client `python init_client.py`
   	4. Execute on the client `python search.py`
 - Distributed-SPTAG:
+  	1. Go to each server, customize the config.py file (attention to START_METADATA_OFFSET) and run `python init.py`
 	1. Go to the servers hosting the previously created index. In the Release folder of the library, import and customize the [service.ini](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Algorithms/Distributed-Sptag/service.ini "service.ini") file and run the command `./server -m socket -c service.ini`
 	2. Go to the machine you identify as the aggregator. In the Release folder of the library, import and customize the [Aggregator.ini](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Algorithms/Distributed-Sptag/Aggregator.ini "Aggregator.ini") file and run the command `./aggregator`
 	3. Go to the client, customize the config.py file, and execute `python search.py`
