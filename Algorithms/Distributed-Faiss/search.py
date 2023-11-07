@@ -20,7 +20,7 @@ def load_faiss_index():
 
 def query_faiss_index(faiss_index, query_vector, nearest_neighbors, chronometer: Chronometer):
     if SEARCH_PARAMS:
-        faiss_index.set_index_parameter(INDEX_ID, SEARCH_PARAMS)
+        faiss_index.set_index_parameters(INDEX_ID, SEARCH_PARAMS)
     chronometer.begin_time_window()
     scores, meta = faiss_index.search(query_vector, nearest_neighbors, INDEX_ID, return_embeddings=False)
     chronometer.end_time_window()

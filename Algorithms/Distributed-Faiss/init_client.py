@@ -28,14 +28,14 @@ def fill_index(faiss_index, chronometer: Chronometer):
         with np.load(PATH_DATASETS + dataset_name) as fp:
             DEBUG(['Loading and training', dataset_name])
             data = fp['arr_0']
-            idx += 1
 
             norm_matrix = np.asmatrix(data).astype(np.float32)
             faiss.normalize_L2(norm_matrix)
 
             chronometer.begin_time_window()
-            faiss_index.add_index_data(INDEX_ID, norm_matrix, [i for i in range(len(norm_matrix)*(idx-1), len(norm_matrix)*idx)], train_async_if_triggered=False)
-            chronometer.end_time_window()                
+            faiss_index.add_index_data(INDEX_ID, norm_matrix, [i+idx for i in range(len(norm_matrix))], train_async_if_triggered=False)
+            chronometer.end_time_window()
+            idx += len(data)              
     
 
 def build_and_save_faiss_index(faiss_index, chronometer: Chronometer):
