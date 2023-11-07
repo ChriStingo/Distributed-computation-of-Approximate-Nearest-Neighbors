@@ -51,7 +51,7 @@ First go into [Algorithms](https://github.com/ChriStingo/Approximate-Nearest-Nei
  	cd SPTAG
 	docker build -t sptag .
 	```
-- Distributed-Faiss: clone the [repository](https://github.com/facebookresearch/distributed-faiss) (if you want to use my PR for adding precision to search phase clone this [repository]([https://github.com/facebookresearch/distributed-faiss](https://github.com/ChriStingo/distributed-faiss/tree/set-index-parameter))), enter the folder and then run `pip install -e .`
+- Distributed-Faiss: clone the [repository](https://github.com/facebookresearch/distributed-faiss) (if you want to use my PR for adding precision to search phase with `set_index_parameter` or `set_index_parameters` methods clone this [repository]([https://github.com/facebookresearch/distributed-faiss](https://github.com/ChriStingo/distributed-faiss/tree/set-index-parameter))), enter the folder and then run `pip install -e .`
 - Distributed-SPTAG: follow the instruction for *SPTAG*
 - Milvus: `pip install pymilvus` and then milvus can be install with [docker compose](https://milvus.io/docs/install_standalone-docker.md) or [Kubernetes](https://milvus.io/docs/install_standalone-helm.md) (Milvus Standalone for testing) or with [Helm + Kubernetes](https://milvus.io/docs/install_cluster-helm.md) (Milvus Cluster for production)
 
