@@ -3,7 +3,7 @@ from pymilvus import Collection, connections
 from mocks import MOCKED_QUERY_VECTOR_1 as MOCKED_QUERY_VECTOR
 from chronometer import Chronometer
 
-from config import PATH_IMAGES
+from config import PATH_IMAGES, SEARCH_PARAMS, NEIGHBORS_NUMBER
 
 def load_milvus_index():                          
     connections.connect("default", host="localhost", port="19530")
@@ -12,7 +12,7 @@ def load_milvus_index():
 
 def query_milvus_index(collection, query_vector, nearest_neighbors, chronometer: Chronometer):
     collection.load()
-    search_params = {"metric_type": "L2", "params": {"nprobe": 10}}
+    search_params = {"metric_type": "L2", "params": SEARCH_PARAMS}
     chronometer.begin_time_window()
     results = collection.search(
         data=[query_vector], 
@@ -33,7 +33,7 @@ def get_images_by_id(id_list):
 def main():
     chronometer = Chronometer()
     collection = load_milvus_index()
-    milvus_result_id = query_milvus_index(collection, MOCKED_QUERY_VECTOR, 100)
+    milvus_result_id = query_milvus_index(collection, MOCKED_QUERY_VECTOR, NEIGHBORS_NUMBER)
     collection.release()
     milvus_result_images = get_images_by_id(milvus_result_id)
     print(milvus_result_id)

@@ -8,6 +8,9 @@ PATH_IMAGES = '../../Datasets/Images/images.txt'
 DISTANCE = 'angular'  # Metric: "angular", "euclidean", "manhattan", "hamming", or "dot"
 NUMBER_OF_TREES = 16 # Is provided during build time and affects the build time and the index size. A larger value will give more accurate results, but larger indexes
 
+''' ### SEARCH CONFIG ### '''
+NEIGHBORS_NUMBER = 100
+SEARCH_K = -1
 
 ''' ### UTILS ### '''
 def DEBUG(elements):

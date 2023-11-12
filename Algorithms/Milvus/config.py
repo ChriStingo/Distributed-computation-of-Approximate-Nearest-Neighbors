@@ -10,6 +10,9 @@ INDEX_PARAMS = {
         "params":{"nlist":1024}
     }
 
+''' ### SEARCH CONFIG ### '''
+SEARCH_PARAMS = {"nprobe": 10}
+NEIGHBORS_NUMBER = 100
 
 ''' ### UTILS ### '''
 def DEBUG(elements):

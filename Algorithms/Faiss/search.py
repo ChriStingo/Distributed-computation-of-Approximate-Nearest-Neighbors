@@ -2,13 +2,12 @@ import faiss
 import numpy as np
 from mocks import MOCKED_QUERY_VECTOR_1 as MOCKED_QUERY_VECTOR
 from chronometer import Chronometer
-from config import PATH_IMAGES, PATH_INDEX, SEARCH_PARAMS
+from config import PATH_IMAGES, PATH_INDEX, SEARCH_PARAMS, NEIGHBORS_NUMBER
 
 def load_faiss_index():                          
     return faiss.read_index(PATH_INDEX)
 
 def query_faiss_index(faiss_index, query_vector, nearest_neighbors, chronometer: Chronometer):
-    # Function for tuned parameter: faiss.ParameterSpace().set_index_parameter(faiss_index, "nprobe", 128)
     if SEARCH_PARAMS:
         faiss.ParameterSpace().set_index_parameters(faiss_index, SEARCH_PARAMS)
     chronometer.begin_time_window()
@@ -24,7 +23,7 @@ def get_images_by_id(id_list):
 def main():
     chronometer = Chronometer()
     faiss_index = load_faiss_index()
-    faiss_result_id = query_faiss_index(faiss_index, MOCKED_QUERY_VECTOR, 100, chronometer)[0]
+    faiss_result_id = query_faiss_index(faiss_index, MOCKED_QUERY_VECTOR, NEIGHBORS_NUMBER, chronometer)[0]
     faiss_result_images = get_images_by_id(faiss_result_id)
     print(faiss_result_id)
     print(''.join(faiss_result_images))

@@ -5,7 +5,7 @@ import numpy as np
 import heapq
 import time
 from chronometer import Chronometer
-from config import PATH_IMAGES, ADDR_IP_AGGREGATOR, ADDR_PORT_AGGREGATOR 
+from config import PATH_IMAGES, ADDR_IP_AGGREGATOR, ADDR_PORT_AGGREGATOR, NEIGHBORS_NUMBER
 
 def load_sptag_index():
     index = SPTAGClient.AnnClient(ADDR_IP_AGGREGATOR, ADDR_PORT_AGGREGATOR)
@@ -41,7 +41,7 @@ def get_images_by_id(distances, metadata, chronometer: Chronometer):
             continue
 
     chronometer.begin_time_window()
-    zipped_list = heapq.nsmallest(100, zip(tmpDistances, tmpMetadata), key=lambda x: x[0]) # Partial sort
+    zipped_list = heapq.nsmallest(NEIGHBORS_NUMBER, zip(tmpDistances, tmpMetadata), key=lambda x: x[0]) # Partial sort
 
     tmpLinks = []
     for _, meta in zipped_list:
@@ -53,7 +53,7 @@ def get_images_by_id(distances, metadata, chronometer: Chronometer):
 def main():
     chronometer = Chronometer()
     sptag_index = load_sptag_index()
-    sptag_result_distances, sptag_result_metadata = query_sptag_index(sptag_index, np.array(MOCKED_QUERY_VECTOR).astype(np.float32), 100, chronometer)
+    sptag_result_distances, sptag_result_metadata = query_sptag_index(sptag_index, np.array(MOCKED_QUERY_VECTOR).astype(np.float32), NEIGHBORS_NUMBER, chronometer)
     sptag_result_images = get_images_by_id(sptag_result_distances, sptag_result_metadata, chronometer)
     print(sptag_result_metadata)
     print(''.join(sptag_result_images))

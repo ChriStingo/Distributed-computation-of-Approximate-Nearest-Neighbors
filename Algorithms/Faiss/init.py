@@ -15,12 +15,12 @@ def train_index(faiss_index, chronometer: Chronometer):
     for dataset_name in sorted(listdir(PATH_DATASETS))[:DATASETS_USED_TO_TRAIN]:
         with np.load(PATH_DATASETS + dataset_name) as fp:
             DEBUG(['Loading and training', dataset_name])
-            data = fp['arr_0']
+            data = np.asmatrix(fp['arr_0']).astype(np.float32)
             
             if len(matrix) == 0:
                 matrix = data
             else: 
-                matrix = np.concatenate((matrix, data))
+                matrix = np.concatenate((matrix, data), axis=0)
     
     norm_matrix = np.asmatrix(matrix).astype(np.float32)
     faiss.normalize_L2(norm_matrix)

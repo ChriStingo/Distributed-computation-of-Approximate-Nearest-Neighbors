@@ -5,6 +5,8 @@ Datasets/Indexes/*
 Datasets/.backup/*
 Algorithms/Faiss/*
 **/__pycache__/
+**/out.txt
+Datasets/Images/BigImages/*
 
 # Allow
 !Datasets/Compressed/links.txt

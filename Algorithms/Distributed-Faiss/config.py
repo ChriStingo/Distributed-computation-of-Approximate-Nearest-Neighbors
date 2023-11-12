@@ -1,6 +1,6 @@
 ''' ### PATHS ### '''
 PATH_DATASETS = '../../Datasets/Vectors/' # Path of datasets folder
-PATH_INDEX = '../../Datasets/Indexes/dfaiss' # Index folder
+PATH_INDEX = '../../Datasets/Indexes/dfaiss/' # Index folder
 PATH_IMAGES = '../../Datasets/Images/images.txt'
 
 
@@ -10,8 +10,11 @@ INDEX_ID = "images"
 TRAIN_RATIO = 1.0
 INDEX_ALREADY_CREATED = False
 INDEX_TYPE = None
-INDEX_FACTORY = "IVF256,PQ2048x4fs,RFlat"
-SEARCH_PARAMS = None
+INDEX_FACTORY = "IVF64,PQ2048x4fs,RFlat"
+
+''' ### SEARCH CONFIG ### '''
+SEARCH_PARAMS = "nprobe=100,k_factor_rf=100"
+NEIGHBORS_NUMBER = 100
 
 
 ''' ### UTILS ### '''

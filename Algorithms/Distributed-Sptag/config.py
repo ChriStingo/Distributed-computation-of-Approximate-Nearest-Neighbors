@@ -16,6 +16,9 @@ DATASETS_USED_TO_TRAIN = 1
 START_METADATA_OFFSET = 0 # count all the vectors inserted in the previus indexes, needed for correct ids in distributed version
 SPANN = False
 
+''' ### SEARCH CONFIG ### '''
+NEIGHBORS_NUMBER = 100
+
 
 ''' ### UTILS ### '''
 def DEBUG(elements):

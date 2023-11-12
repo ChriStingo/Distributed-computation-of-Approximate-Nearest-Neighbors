@@ -10,6 +10,9 @@ NUMBER_OF_THREADS = '32'
 DATASETS_USED_TO_TRAIN = 16
 SPANN = False
 
+''' ### SEARCH CONFIG ### '''
+NEIGHBORS_NUMBER = 100
+
 
 ''' ### UTILS ### '''
 def DEBUG(elements):

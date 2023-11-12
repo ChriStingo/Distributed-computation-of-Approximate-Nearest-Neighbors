@@ -4,7 +4,7 @@ import numpy as np
 import faiss
 from mocks import MOCKED_QUERY_VECTOR_1 as MOCKED_QUERY_VECTOR
 from chronometer import Chronometer
-from config import INDEX_FACTORY, DISTANCE, INDEX_ID, PATH_IMAGES, PATH_INDEX, get_dataset_columns , TRAIN_RATIO, SEARCH_PARAMS
+from config import INDEX_FACTORY, DISTANCE, INDEX_ID, PATH_IMAGES, PATH_INDEX, get_dataset_columns, TRAIN_RATIO, SEARCH_PARAMS, NEIGHBORS_NUMBER
 
 def load_faiss_index():
     faiss_client = IndexClient("DISCOVERY_CONFIG.txt")
@@ -34,7 +34,7 @@ def get_images_by_id(id_list):
 def main():
     chronometer = Chronometer()
     faiss_index = load_faiss_index()
-    faiss_result_id = query_faiss_index(faiss_index, np.asmatrix(MOCKED_QUERY_VECTOR).astype(np.float32), 100, chronometer)
+    faiss_result_id = query_faiss_index(faiss_index, np.asmatrix(MOCKED_QUERY_VECTOR).astype(np.float32), NEIGHBORS_NUMBER, chronometer)
     faiss_result_images = get_images_by_id(faiss_result_id)
     print(faiss_result_id)
     print(''.join(faiss_result_images))
