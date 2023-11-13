@@ -1,16 +1,9 @@
 import heapq
 from os import listdir
+from config import PATH_DATASETS, PATH_IMAGES, DEBUG
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 from mocks import MOCKED_QUERY_VECTOR_1 as MOCKED_QUERY_VECTOR
-
-''' ### PATHS ### '''
-PATH_DATASETS = '../../../Datasets/Vectors/' # Path of datasets folder
-PATH_IMAGES = '../../../Datasets/Images/images.txt'
-
-''' ### UTILS ### '''
-def DEBUG(elements):
-    print(' '.join(map(str, elements)))
 
 
 dist = []
