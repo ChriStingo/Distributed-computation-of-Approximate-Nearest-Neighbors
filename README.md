@@ -5,8 +5,8 @@ This project references to my master thesis work "Distributed computation of App
 This repository is intended to contain implementations of several libraries for performing similarity (cosine) searches in order to find the best one for my purpose. The various implementations are based on the previously exposed use case.
 
 ### **Approximate Nearest Neighbors**
- - [KNN](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html): this library is not approximated and is highly inefficient for my research use case, its implementation has been provided only for comparison purposes with approximated libraries
- - [Annoy](https://github.com/spotify/annoy): this library implements a version of ANN, written by Erik Bernhardsson on behalf of Spotify
+ - [KNN](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html): this library is not approximated and is highly inefficient for my research use case, its implementation, with sklearn, has been provided only for comparison purposes with approximated libraries. Inside KNN you will also find a brute-force version that execute a linear comparison between a single vector and the entire dataset, without creating a data structure.
+ - [Annoy](https://github.com/spotify/annoy): this library implements a version of ANN, written by Erik Bernhardsson on behalf of Spotify.
  - [Faiss](https://github.com/facebookresearch/faiss): this library was created for efficient similarity searches and clustering of dense vectors by the facebook (now Meta) research team.
  - [SPTAG](https://github.com/microsoft/SPTAG): this library is designed for large scale vector approximate nearest neighbor search, created by Microsoft as an alternative version to their previous library, called DiskANN. Unlike other technologies, this solution involves the use of RAM memory and the physical disk, efficiently managing which and how much information save on them.
 
@@ -41,7 +41,7 @@ The project has been structured in a precise way to ensure easy organization of 
 
 ### **Import / Install / Compile the libraries**
 First go into [Algorithms](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Algorithms "Algorithms") folder and install general requirements with `pip install -r requirements.txt`. 
- - KNN: `pip install scikit-learn`
+ - KNN: `pip install scikit-learn` or don't install anything if you prefer to use the brute-force version
  - Annoy: `pip install annoy`  
  - Faiss: follow the [conda tutorial](https://github.com/facebookresearch/faiss/blob/main/INSTALL.md)
  - SPTAG: you can [compile](https://github.com/microsoft/SPTAG/blob/main/README.md) this library via source code, or use Docker. I personally recommend the latter solution, by running these commands:
