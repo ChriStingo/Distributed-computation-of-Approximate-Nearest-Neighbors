@@ -30,6 +30,7 @@ The project has been structured in a precise way to ensure easy organization of 
 	 - [Images](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets/Images): inside this folder it is possible to find the images corresponding to the vectors extracted from the dataset
 	 - [Vectors](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/tree/main/Datasets/Vectors): within this folder it is possible to find the vectors corresponding to the images extracted from the dataset
 	 - [formatDatasets.bash](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/blob/main/Datasets/formatDatasets.bash): this file, executable following this [README.md](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/blob/main/Datasets/README.md), contains the code to decompose all the datasets from the Decompressed folder moving the vectors inside the Vectors/ folder and the corresponding images inside the Images/ folder. This file uses [formatDatasets.py](https://github.com/ChriStingo/Approximate-Nearest-Neighbors-Searches/blob/main/Datasets/formatDatasets.py) to convert .csv file into binary format to speed up all the project.
+  - [Docs](https://github.com/ChriStingo/Distributed-computation-of-Approximate-Nearest-Neighbors/tree/main/Docs "Docs"): documents obtained during the writing of the thesis
 
 ## **How to execute**
 
