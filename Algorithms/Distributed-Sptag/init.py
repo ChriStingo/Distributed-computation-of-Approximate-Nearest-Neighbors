@@ -6,14 +6,11 @@ from os import listdir
 from config import DATASETS_USED_TO_TRAIN, SPANN, DEBUG, DISTANCE, START_METADATA_OFFSET, NUMBER_OF_THREADS, PATH_INDEX, PATH_DATASETS, get_dataset_columns
 from chronometer import Chronometer
 
-metadata_offset = START_METADATA_OFFSET
-
-def generate_metadata(list_len):
-    global metadata_offset
+def generate_metadata(offset, list_len):
     metadata = ''
-    for i in range(metadata_offset, metadata_offset+list_len):
+    for i in range(offset, offset+list_len):
         metadata += str(i) + '\n'
-    metadata_offset += list_len
+    offset += list_len
     return metadata.encode()
 
 def create_sptag_index():
@@ -40,11 +37,11 @@ def create_sptag_index():
         sptag_index.SetBuildParam("SearchInternalResultNum", "64", "BuildSSDIndex")
     else:
         sptag_index = SPTAG.AnnIndex('BKT', 'Float', get_dataset_columns())
-        sptag_index.SetBuildParam("IndexDirectory", PATH_INDEX, "Index")
+        sptag_index.SetBuildParam("NumberOfThreads", NUMBER_OF_THREADS, "Index")
         sptag_index.SetBuildParam("DistCalcMethod", DISTANCE, "Index")
     return sptag_index
     
-def train_index(sptag_index, chronometer: Chronometer):
+def train_index(sptag_index, chronometer: Chronometer, offset):
 
     # Read ${DATASETS_USED_TO_TRAIN} datasets in ${PATH_DATASETS}, insert its vectors in the index and train it
     matrix = []
@@ -58,14 +55,13 @@ def train_index(sptag_index, chronometer: Chronometer):
             else: 
                 matrix = np.concatenate((matrix, data))
 
-    
-    metadata = generate_metadata(len(matrix))
     chronometer.begin_time_window()
-    sptag_index.BuildWithMetaData(np.asmatrix(matrix).astype(np.float32), metadata, len(matrix), False, False)
-    sptag_index.AddWithMetaData(np.asmatrix(matrix).astype(np.float32), metadata, len(matrix), False, False)
+    sptag_index.BuildWithMetaData(np.asmatrix(matrix).astype(np.float32), generate_metadata(offset, len(matrix)), len(matrix), False, False)
+    sptag_index.AddWithMetaData(np.asmatrix(matrix).astype(np.float32), generate_metadata(offset, len(matrix)), len(matrix), False, False)
     chronometer.end_time_window()
+    return offset+len(matrix)
 
-def fill_index(sptag_index, chronometer: Chronometer):
+def fill_index(sptag_index, chronometer: Chronometer, offset):
     # Read the remaining dataset in ${PATH_DATASETS} and insert its vectors in the index
     for dataset_name in sorted(listdir(PATH_DATASETS))[DATASETS_USED_TO_TRAIN:]:
         with np.load(PATH_DATASETS + dataset_name) as fp:
@@ -73,8 +69,9 @@ def fill_index(sptag_index, chronometer: Chronometer):
             data = fp['arr_0']
             
             chronometer.begin_time_window()
-            sptag_index.AddWithMetaData(np.asmatrix(data).astype(np.float32), generate_metadata(len(data)), len(data), False, False)
+            sptag_index.AddWithMetaData(np.asmatrix(data).astype(np.float32), generate_metadata(offset, len(data)), len(data), False, False)
             chronometer.end_time_window()
+            offset += len(data)
 
 def build_and_save_sptag_index(sptag_index):
     sptag_index.Save(PATH_INDEX)
@@ -82,8 +79,9 @@ def build_and_save_sptag_index(sptag_index):
 def main():
     chronometer = Chronometer()
     sptag_index = create_sptag_index()
-    train_index(sptag_index, chronometer)
-    fill_index(sptag_index, chronometer)
+    offset = START_METADATA_OFFSET
+    offset = train_index(sptag_index, chronometer, offset)
+    fill_index(sptag_index, chronometer, offset)
     build_and_save_sptag_index(sptag_index)
     chronometer.get_total_time()
 
